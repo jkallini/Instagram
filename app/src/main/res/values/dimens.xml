@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item type="dimen" name="action_bar_button_width">@dimen/action_bar_height</item>
+    <item name="action_bar_button_width" type="dimen">@dimen/action_bar_height</item>
     <dimen name="action_bar_height">48.0dip</dimen>
     <dimen name="action_bar_inbox_2digit_width">32.0dip</dimen>
     <dimen name="action_bar_inbox_3digit_width">36.0dip</dimen>
@@ -412,7 +412,9 @@
     <dimen name="direct_action_bar_search_container_offset">61.0dip</dimen>
     <dimen name="direct_action_bar_search_top_margin">40.0dip</dimen>
     <dimen name="direct_add_to_multi_author_story_badge_size">20.0dip</dimen>
-    <item type="dimen" name="direct_add_to_multi_author_story_image_size">@dimen/avatar_size_medium</item>
+    <item name="direct_add_to_multi_author_story_image_size" type="dimen">
+        @dimen/avatar_size_medium
+    </item>
     <dimen name="direct_add_to_multi_author_story_ring_size">48.0dip</dimen>
     <dimen name="direct_add_to_multi_author_story_row_height">64.0dip</dimen>
     <dimen name="direct_avatar_double_medium">44.0dip</dimen>
@@ -447,10 +449,12 @@
     <dimen name="direct_likers_spacing">3.3299866dip</dimen>
     <dimen name="direct_link_preview_height">150.0dip</dimen>
     <dimen name="direct_message_avatar_spacing">48.0dip</dimen>
-    <item type="dimen" name="direct_message_composer_edittext_padding_end">@dimen/row_padding</item>
+    <item name="direct_message_composer_edittext_padding_end" type="dimen">@dimen/row_padding</item>
     <dimen name="direct_message_composer_edittext_padding_start">0.0dip</dimen>
     <dimen name="direct_message_composer_height">46.0dip</dimen>
-    <item type="dimen" name="direct_message_composer_padding_end">@dimen/direct_message_composer_side_padding</item>
+    <item name="direct_message_composer_padding_end" type="dimen">
+        @dimen/direct_message_composer_side_padding
+    </item>
     <dimen name="direct_message_composer_padding_start">16.0dip</dimen>
     <dimen name="direct_message_composer_side_padding">8.0dip</dimen>
     <dimen name="direct_message_composer_stroke_width">1.0dip</dimen>
@@ -503,7 +507,9 @@
     <dimen name="direct_row_message_comment_padding_sides">12.0dip</dimen>
     <dimen name="direct_row_message_comment_text_size">16.0sp</dimen>
     <dimen name="direct_row_message_common_padding">8.0dip</dimen>
-    <item type="dimen" name="direct_row_message_content_avatar_spacing_large">@dimen/direct_row_message_content_horizontal_padding_for_rounded_image</item>
+    <item name="direct_row_message_content_avatar_spacing_large" type="dimen">
+        @dimen/direct_row_message_content_horizontal_padding_for_rounded_image
+    </item>
     <dimen name="direct_row_message_content_avatar_spacing_small">12.0dip</dimen>
     <dimen name="direct_row_message_content_horizontal_padding">16.0dip</dimen>
     <dimen name="direct_row_message_content_horizontal_padding_for_rounded_image">14.0dip</dimen>
@@ -520,7 +526,9 @@
     <dimen name="direct_row_message_send_state_icon_size">18.0dip</dimen>
     <dimen name="direct_row_message_send_state_icon_text_gap">5.0dip</dimen>
     <dimen name="direct_row_message_sender_avatar_padding">14.0dip</dimen>
-    <item type="dimen" name="direct_row_message_sidebar_width">@dimen/direct_row_message_timestamp_width</item>
+    <item name="direct_row_message_sidebar_width" type="dimen">
+        @dimen/direct_row_message_timestamp_width
+    </item>
     <dimen name="direct_row_message_sidebar_witdh_timestamp_only">76.0dip</dimen>
     <dimen name="direct_row_message_spacing">6.0dip</dimen>
     <dimen name="direct_row_message_thumbnail_size">40.0dip</dimen>
@@ -538,7 +546,8 @@
     <dimen name="direct_story_tray_double_avatar_white_circle_size">50.0dip</dimen>
     <dimen name="direct_thread_action_bar_height_new_thread_header">72.0dip</dimen>
     <dimen name="direct_thread_action_bar_height_search_in_action_bar">30.0dip</dimen>
-    <dimen name="direct_thread_action_bar_height_search_in_action_bar_new_thread_header">8.0dip</dimen>
+    <dimen name="direct_thread_action_bar_height_search_in_action_bar_new_thread_header">8.0dip
+    </dimen>
     <dimen name="direct_unified_inbox_pulse_circle_side_margin">12.5dip</dimen>
     <dimen name="direct_unified_inbox_pulsing_avatar_left_margin">18.0dip</dimen>
     <dimen name="directshare_inbox_row_height">88.0dip</dimen>
@@ -592,11 +601,15 @@
     <dimen name="explore_channel_video_carousel_item_spacing">4.0dip</dimen>
     <dimen name="explore_event_viewer_header_close_button_left_padding">10.0dip</dimen>
     <dimen name="explore_event_viewer_header_close_button_right_padding">18.0dip</dimen>
-    <item type="dimen" name="explore_event_viewer_header_close_button_size">@dimen/action_bar_height</item>
+    <item name="explore_event_viewer_header_close_button_size" type="dimen">
+        @dimen/action_bar_height
+    </item>
     <dimen name="explore_event_viewer_header_event_large_font_size">16.0sp</dimen>
     <dimen name="explore_event_viewer_header_event_small_font_size">14.0sp</dimen>
     <dimen name="explore_event_viewer_header_margin">14.0dip</dimen>
-    <item type="dimen" name="explore_event_viewer_header_text_side_margin">@dimen/action_bar_height</item>
+    <item name="explore_event_viewer_header_text_side_margin" type="dimen">
+        @dimen/action_bar_height
+    </item>
     <dimen name="explore_event_viewer_profile_picture_size">20.0dip</dimen>
     <dimen name="explore_event_viewer_row_header_height">36.0dip</dimen>
     <dimen name="explore_event_viewer_row_header_margin_top">-36.0dip</dimen>
@@ -683,7 +696,7 @@
     <dimen name="feedback_text_size">14.0sp</dimen>
     <dimen name="field_with_glyph_drawable_padding">8.0dip</dimen>
     <dimen name="field_with_glyph_left_padding">8.0dip</dimen>
-    <item type="dimen" name="field_with_glyph_right_padding">@dimen/row_text_padding</item>
+    <item name="field_with_glyph_right_padding" type="dimen">@dimen/row_text_padding</item>
     <dimen name="filter_label_fading_edge">35.0dip</dimen>
     <dimen name="filter_label_text_bottom">19.5dip</dimen>
     <dimen name="find_friends_empty_view_detail_margin_top">8.0dip</dimen>
@@ -967,7 +980,9 @@
     <dimen name="media_thumbnail_tray_item_corner_radius">10.0dip</dimen>
     <dimen name="media_thumbnail_tray_item_padding">6.0dip</dimen>
     <dimen name="media_thumbnail_tray_item_stroke_width">2.0dip</dimen>
-    <item type="dimen" name="media_thumbnail_tray_vertical_padding">@dimen/media_thumbnail_tray_item_padding</item>
+    <item name="media_thumbnail_tray_vertical_padding" type="dimen">
+        @dimen/media_thumbnail_tray_item_padding
+    </item>
     <dimen name="megaphone_button_padding_large">8.0dip</dimen>
     <dimen name="megaphone_icon_margin_top">5.0dip</dimen>
     <dimen name="megaphone_icon_size">40.0dip</dimen>
@@ -1147,7 +1162,7 @@
     <dimen name="quick_capture_next_button_height">44.0dip</dimen>
     <dimen name="quick_capture_next_button_left_padding">20.0dip</dimen>
     <dimen name="quick_capture_next_button_right_padding">12.0dip</dimen>
-    <item type="dimen" name="quick_capture_next_button_text_size">@dimen/font_medium</item>
+    <item name="quick_capture_next_button_text_size" type="dimen">@dimen/font_medium</item>
     <dimen name="quick_capture_picker_icon_size">48.0dip</dimen>
     <dimen name="quick_capture_picker_label_size">14.0dip</dimen>
     <dimen name="quick_capture_recipient_picker_right_margin">4.0dip</dimen>
@@ -1257,15 +1272,15 @@
     <dimen name="reg_icon_width">25.0dip</dimen>
     <dimen name="reg_margin_large">36.0dip</dimen>
     <dimen name="reg_margin_medium">24.0dip</dimen>
-    <item type="dimen" name="reg_margin_screen_vertical">@dimen/reg_field_horizontal_margin</item>
+    <item name="reg_margin_screen_vertical" type="dimen">@dimen/reg_field_horizontal_margin</item>
     <dimen name="reg_margin_small">16.0dip</dimen>
     <dimen name="reg_margin_xlarge">48.0dip</dimen>
     <dimen name="reg_margin_xsmall">8.0dip</dimen>
     <dimen name="reg_or_divider_padding">12.0dip</dimen>
     <dimen name="reg_page_info_margin">36.0dip</dimen>
-    <item type="dimen" name="reg_page_side_margin">@dimen/reg_margin_large</item>
+    <item name="reg_page_side_margin" type="dimen">@dimen/reg_margin_large</item>
     <dimen name="reg_sms_consent_side_margin">32.0dip</dimen>
-    <item type="dimen" name="reg_tertiary_text_link_line_spacing_multiplier">1.1</item>
+    <item name="reg_tertiary_text_link_line_spacing_multiplier" type="dimen">1.1</item>
     <dimen name="reg_text_field_height">48.0dip</dimen>
     <dimen name="reg_text_side_margin">16.0dip</dimen>
     <dimen name="reg_token_padding_bottom">8.0dip</dimen>
@@ -1282,7 +1297,7 @@
     <dimen name="response_text_row_horizontal_offset">5.0dip</dimen>
     <dimen name="result_bar_height">10.0dip</dimen>
     <dimen name="result_bar_horizontal_offset_padding">26.0dip</dimen>
-    <item type="dimen" name="result_bar_text_size">@dimen/font_medium</item>
+    <item name="result_bar_text_size" type="dimen">@dimen/font_medium</item>
     <dimen name="result_bar_width">4.0dip</dimen>
     <dimen name="result_bottom_button_height">44.0dip</dimen>
     <dimen name="result_bottom_button_margin">16.0dip</dimen>
@@ -1452,8 +1467,10 @@
     <dimen name="stacked_avatar_offset_size">8.0dip</dimen>
     <dimen name="stacked_avatar_stroke_size">2.0dip</dimen>
     <dimen name="static_action_bar_bottom_padding">30.0dip</dimen>
-    <item type="dimen" name="static_action_bar_close_tap_target_height">@dimen/action_bar_height</item>
-    <item type="dimen" name="static_action_bar_close_tap_target_width">@dimen/action_bar_height</item>
+    <item name="static_action_bar_close_tap_target_height" type="dimen">@dimen/action_bar_height
+    </item>
+    <item name="static_action_bar_close_tap_target_width" type="dimen">@dimen/action_bar_height
+    </item>
     <dimen name="static_action_bar_top_padding">10.0dip</dimen>
     <dimen name="stepper_title_text_size">22.0sp</dimen>
     <dimen name="story_carousel_padding">5.0dip</dimen>
@@ -1517,22 +1534,32 @@
     <dimen name="text_format_emphasis_vertical_padding_default">0.0dip</dimen>
     <dimen name="text_format_emphasis_vertical_padding_strong">1.0dip</dimen>
     <dimen name="text_format_hint_size_classic">32.0dip</dimen>
-    <item type="dimen" name="text_format_hint_size_modern">@dimen/text_format_base_size_modern</item>
-    <item type="dimen" name="text_format_hint_size_neon">@dimen/text_format_base_size_neon</item>
-    <item type="dimen" name="text_format_hint_size_strong">@dimen/text_format_base_size_strong</item>
-    <item type="dimen" name="text_format_hint_size_typewriter">@dimen/text_format_base_size_typewriter</item>
+    <item name="text_format_hint_size_modern" type="dimen">@dimen/text_format_base_size_modern
+    </item>
+    <item name="text_format_hint_size_neon" type="dimen">@dimen/text_format_base_size_neon</item>
+    <item name="text_format_hint_size_strong" type="dimen">@dimen/text_format_base_size_strong
+    </item>
+    <item name="text_format_hint_size_typewriter" type="dimen">
+        @dimen/text_format_base_size_typewriter
+    </item>
     <dimen name="text_format_label_padding_horizontal">12.0dip</dimen>
     <dimen name="text_format_label_padding_vertical">6.0dip</dimen>
-    <item type="dimen" name="text_format_max_size_classic">@dimen/text_format_base_size_classic</item>
+    <item name="text_format_max_size_classic" type="dimen">@dimen/text_format_base_size_classic
+    </item>
     <dimen name="text_format_max_size_modern">180.0dip</dimen>
     <dimen name="text_format_max_size_neon">360.0dip</dimen>
     <dimen name="text_format_max_size_strong">180.0dip</dimen>
-    <item type="dimen" name="text_format_max_size_typewriter">@dimen/text_format_base_size_typewriter</item>
-    <item type="dimen" name="text_format_min_size_classic">@dimen/text_format_base_size_classic</item>
-    <item type="dimen" name="text_format_min_size_modern">@dimen/text_format_base_size_modern</item>
-    <item type="dimen" name="text_format_min_size_neon">@dimen/text_format_base_size_neon</item>
-    <item type="dimen" name="text_format_min_size_strong">@dimen/text_format_base_size_strong</item>
-    <item type="dimen" name="text_format_min_size_typewriter">@dimen/text_format_base_size_typewriter</item>
+    <item name="text_format_max_size_typewriter" type="dimen">
+        @dimen/text_format_base_size_typewriter
+    </item>
+    <item name="text_format_min_size_classic" type="dimen">@dimen/text_format_base_size_classic
+    </item>
+    <item name="text_format_min_size_modern" type="dimen">@dimen/text_format_base_size_modern</item>
+    <item name="text_format_min_size_neon" type="dimen">@dimen/text_format_base_size_neon</item>
+    <item name="text_format_min_size_strong" type="dimen">@dimen/text_format_base_size_strong</item>
+    <item name="text_format_min_size_typewriter" type="dimen">
+        @dimen/text_format_base_size_typewriter
+    </item>
     <dimen name="text_format_safe_area_margin_height">52.0dip</dimen>
     <dimen name="text_format_shadow_distance_default">1.0sp</dimen>
     <dimen name="text_format_shadow_distance_neon">0.0sp</dimen>
@@ -1674,7 +1701,7 @@
     <dimen name="vertical_row_padding">8.0dip</dimen>
     <dimen name="vertical_separator_padding">8.0dip</dimen>
     <dimen name="vertical_separator_padding_large">16.0dip</dimen>
-    <item type="dimen" name="video_item_optional_text_letter_spacing">0.06</item>
+    <item name="video_item_optional_text_letter_spacing" type="dimen">0.06</item>
     <dimen name="video_item_overlay_background_extra_height">90.0dip</dimen>
     <dimen name="video_item_overlay_background_extra_width">105.0dip</dimen>
     <dimen name="video_item_overlay_context_font">12.0sp</dimen>
@@ -1801,4 +1828,5 @@
     <dimen name="zero_rating_video_settings_drawer_video_subtitle_bottom_padding">12.0dip</dimen>
     <dimen name="zero_rating_video_settings_drawer_video_subtitle_top_padding">12.0dip</dimen>
     <dimen name="zero_rating_video_settings_drawer_video_title_top_padding">24.0dip</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
