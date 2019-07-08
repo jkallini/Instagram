@@ -2,6 +2,8 @@ package com.example.instagram;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -21,15 +23,35 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
 
     private Button cam;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Setup toolbar
+        // Setup toolbar and bottom navigation view
         Toolbar toolbar = findViewById(R.id.home_bar);
         setSupportActionBar(toolbar);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_home:
+                        // do something here
+                        return true;
+                    case R.id.action_compose:
+                        // do something here
+                        return true;
+                    case R.id.action_profile:
+                        // do something here
+                        return true;
+                    default: return true;
+                }
+            }
+        });
 
         loadTopPosts();
 
