@@ -17,8 +17,15 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        loadTopPosts();
+    }
+
+    // Load the top 20 Instagram posts.
+    private void loadTopPosts() {
+
         final Post.Query postsQuery = new Post.Query();
         postsQuery.getTop().withUser();
+
         // Get all Instagram posts
         postsQuery.findInBackground(new FindCallback<Post>() {
             @Override

@@ -4,13 +4,4 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="12dp"
-        android:text="Home Activity"
-        tools:layout_editor_absoluteX="167dp"
-        tools:layout_editor_absoluteY="326dp" />
-</android.support.constraint.ConstraintLayout>
+    tools:context=".HomeActivity"/>

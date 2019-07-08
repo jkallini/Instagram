@@ -8,8 +8,8 @@ Time spent: **X** hours spent in total
 
 The following **required** functionality is completed:
 
-- [ ] User sees app icon in home screen.
-- [ ] User can sign up to create a new account using Parse authentication
+- [x] User sees app icon in home screen.
+- [x] User can sign up to create a new account using Parse authentication
 - [ ] User can log in and log out of his or her account
 - [ ] The current signed in user is persisted across app restarts
 - [ ] User can take a photo, add a caption, and post it to "Instagram"
@@ -36,7 +36,7 @@ The following **stretch** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [x] The sign up screen has password confirmation functionality.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
