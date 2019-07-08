@@ -6,4 +6,10 @@
     app:theme="@style/CustomToolbarStyle"
     app:popupTheme="@style/CustomPopupStyle">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:src="@drawable/nav_logo_whiteout" />
+
 </android.support.v7.widget.Toolbar>
