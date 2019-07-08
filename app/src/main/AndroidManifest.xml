@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SignupActivity"></activity>
+        <activity android:name=".ComposeActivity"
+            android:label=""/>
+        <activity android:name=".SignupActivity" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
@@ -24,6 +26,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.codepath.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/fileprovider" />
+        </provider>
     </application>
 
 </manifest>

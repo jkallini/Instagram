@@ -11,7 +11,7 @@
     <color name="ads_manager_title_color">#de000000</color>
     <color name="avatar_stroke">@color/black_20_transparent</color>
     <color name="bioTextEntityFontColor">@color/blue_8</color>
-    <color name="black">#ff000000</color>
+    <color name="black">#000000</color>
     <color name="black_10_transparent">#1a000000</color>
     <color name="black_15_transparent">#26000000</color>
     <color name="black_20_transparent">#33000000</color>

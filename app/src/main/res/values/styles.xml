@@ -26,4 +26,10 @@
         <item name="overlapAnchor">false</item>
         <item name="android:dropDownVerticalOffset">-8dp</item>
     </style>
+
+    <style name="CustomComposePopupStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@color/grey_1</item>
+        <item name="android:textColorPrimary">@color/blue_5</item>
+    </style>
+
 </resources>
