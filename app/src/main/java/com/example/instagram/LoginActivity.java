@@ -1,5 +1,6 @@
 package com.example.instagram;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -23,40 +24,53 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etPasswordEntry;
     private MaterialButton mbLogin;
     private MaterialButton mbSignUp;
+    public static Activity loginActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Find references to the views
-        etUsernameEntry = findViewById(R.id.etUsernameEntry);
-        etPasswordEntry = findViewById(R.id.etPasswordEntry);
-        mbLogin = findViewById(R.id.mbLogin);
-        mbSignUp = findViewById(R.id.mbSignUp);
+        loginActivity = this;
 
-        // Set Sign Up text
-        setSignUpText();
+        // Check if a user is currently logged in
+        ParseUser currentUser = ParseUser.getCurrentUser();
 
-        // Set listener for Login button
-        mbLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String username = etUsernameEntry.getText().toString();
-                final String password = etPasswordEntry.getText().toString();
-                login(username, password);
-            }
-        });
+        if (currentUser != null) {
+            // Send user to home page
+            launchHomeActivity();
 
-        // Set listener for Sign Up button
-        mbSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        } else { // show the signup or login screen
+
+            // Find references to the views
+            etUsernameEntry = findViewById(R.id.etUsernameEntry);
+            etPasswordEntry = findViewById(R.id.etPasswordEntry);
+            mbLogin = findViewById(R.id.mbLogin);
+            mbSignUp = findViewById(R.id.mbSignUp);
+
+            // Set Sign Up text
+            setSignUpText();
+
+            // Set listener for Login button
+            mbLogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final String username = etUsernameEntry.getText().toString();
+                    final String password = etPasswordEntry.getText().toString();
+                    login(username, password);
+                }
+            });
+
+            // Set listener for Sign Up button
+            mbSignUp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+
     }
 
     // Set Sign Up button text (for making "Sign up" bold)
@@ -75,16 +89,19 @@ public class LoginActivity extends AppCompatActivity {
             public void done(ParseUser user, ParseException e) {
                 if (e == null) {
                     Log.d("LoginActivity", "Login successful!");
-
-                    // Launch HomeActivity
-                    final Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                    startActivity(intent);
-                    finish();
+                    launchHomeActivity();
                 } else {
                     Log.e("LoginActivity", "Login failed.");
                     e.printStackTrace();
                 }
             }
         });
+    }
+
+    // Launch HomeActivity.
+    private void launchHomeActivity() {
+        final Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
