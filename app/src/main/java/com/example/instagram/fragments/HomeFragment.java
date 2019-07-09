@@ -27,8 +27,8 @@ public class HomeFragment extends Fragment {
 
     private final String TAG = "HomeFragment";
     private RecyclerView rvPosts;
-    private PostAdapter adapter;
-    private List<Post> mPosts;
+    protected PostAdapter adapter;
+    protected List<Post> mPosts;
 
     // swipe container for swipe to refresh functionality
     private SwipeRefreshLayout swipeContainer;
@@ -66,7 +66,7 @@ public class HomeFragment extends Fragment {
         loadTopPosts(new Date(0));
     }
 
-    // Code to setup endless crolling
+    // Code to setup endless scrolling
     private void enableEndlessScrolling() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rvPosts.setLayoutManager(linearLayoutManager);
@@ -105,7 +105,7 @@ public class HomeFragment extends Fragment {
 
 
     // Load the top 20 Instagram posts.
-    private void loadTopPosts(final Date maxDate) {
+    protected void loadTopPosts(final Date maxDate) {
 
         final Post.Query postsQuery = new Post.Query();
         postsQuery.getTop().withUser();
@@ -145,7 +145,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    // Get maximum Date.
+    // Get maximum Date to find next post to load.
     protected Date getMaxDate() {
         int size = mPosts.size();
         if (size == 0) {

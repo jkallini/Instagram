@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import com.example.instagram.fragments.ComposeFragment;
 import com.example.instagram.fragments.HomeFragment;
+import com.example.instagram.fragments.ProfileFragment;
 import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,8 +45,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new ComposeFragment();
                         break;
                     case R.id.action_profile:
-                        // Todo - swap fragment here
-                        fragment = new ComposeFragment();
+                        fragment = new ProfileFragment();
                         break;
                     default:
                         // Todo - swap fragment here

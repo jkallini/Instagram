@@ -11,10 +11,10 @@ import java.util.Date;
 @ParseClassName("Post")
 public class Post extends ParseObject {
 
-    private static final String KEY_DESCRIPTION = "description"; // Key of description of Post
-    private static final String KEY_IMAGE = "image";             // Key of image within Post
-    private static final String KEY_USER = "user";               // Key of user who made Post
-    private static final String KEY_CREATED_AT = "createdAt";    // Key of post's creation time
+    public static final String KEY_DESCRIPTION = "description"; // Key of description of Post
+    public static final String KEY_IMAGE = "image";             // Key of image within Post
+    public static final String KEY_USER = "user";               // Key of user who made Post
+    public static final String KEY_CREATED_AT = "createdAt";    // Key of post's creation time
 
     // Returns the description of this Post as a String.
     public String getDescription() {
