@@ -11,7 +11,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
@@ -54,8 +53,8 @@ public class ComposeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_compose);
 
         // Setup toolbar
-        Toolbar toolbar = findViewById(R.id.compose_bar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.compose_bar);
+        //setSupportActionBar(toolbar);
 
         etCaption = findViewById(R.id.etCaption);
         ivPostImage = findViewById(R.id.ivPostImage);

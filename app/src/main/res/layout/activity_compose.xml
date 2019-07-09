@@ -6,20 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ComposeActivity">
 
-    <include
-        android:id="@+id/compose_bar"
-        layout="@layout/compose_bar"/>
-
     <ImageView
         android:id="@+id/ivPostImage"
-        android:layout_width="370dp"
-        android:layout_height="370dp"
+        android:layout_width="380dp"
+        android:layout_height="380dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/compose_bar"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@color/black" />
 
     <EditText
@@ -55,5 +51,39 @@
         app:layout_constraintTop_toBottomOf="@+id/ivPostImage"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/camera_shadow_fill" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="New Post"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#00A6FF"
+        android:text="Share"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
 
 </android.support.constraint.ConstraintLayout>

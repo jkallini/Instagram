@@ -98,9 +98,9 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    // Launch HomeActivity.
+    // Launch MainActivity.
     private void launchHomeActivity() {
-        final Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+        final Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }

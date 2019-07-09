@@ -71,8 +71,8 @@ public class SignupActivity extends AppCompatActivity {
                     // Hooray! Let them use the app now.
                     Log.d("SignupActivity", "Sign up successful!");
 
-                    // Launch HomeActivity (and finish Login and Signup activities)
-                    final Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
+                    // Launch MainActivity (and finish Login and Signup activities)
+                    final Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                     startActivity(intent);
                     LoginActivity.loginActivity.finish();
                     finish();
