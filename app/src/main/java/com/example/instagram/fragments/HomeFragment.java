@@ -14,11 +14,13 @@ import android.view.ViewGroup;
 
 import com.example.instagram.PostAdapter;
 import com.example.instagram.R;
+import com.example.instagram.model.EndlessRecyclerViewScrollListener;
 import com.example.instagram.model.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -30,6 +32,9 @@ public class HomeFragment extends Fragment {
 
     // swipe container for swipe to refresh functionality
     private SwipeRefreshLayout swipeContainer;
+
+    // Store a member variable for the listener
+    private EndlessRecyclerViewScrollListener scrollListener;
 
     @Nullable
     @Override
@@ -52,7 +57,26 @@ public class HomeFragment extends Fragment {
 
         setupSwipeRefreshing(view);
 
-        loadTopPosts();
+        // For enabling endless scrolling
+        enableEndlessScrolling();
+
+        // Adds the scroll listener to RecyclerView
+        rvPosts.addOnScrollListener(scrollListener);
+
+        loadTopPosts(new Date(0));
+    }
+
+    // Code to setup endless crolling
+    private void enableEndlessScrolling() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        rvPosts.setLayoutManager(linearLayoutManager);
+
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                loadTopPosts(getMaxDate());
+            }
+        };
     }
 
     // Handle logic for Swipe to Refresh.
@@ -75,25 +99,40 @@ public class HomeFragment extends Fragment {
     // Refresh the home screen, and load top posts.
     public void fetchHomeAsync(int page) {
         adapter.clear();
-        loadTopPosts();
+        loadTopPosts(new Date(0));
         swipeContainer.setRefreshing(false);
     }
 
 
     // Load the top 20 Instagram posts.
-    private void loadTopPosts() {
+    private void loadTopPosts(final Date maxDate) {
 
         final Post.Query postsQuery = new Post.Query();
         postsQuery.getTop().withUser();
 
-        // Get all Instagram posts
+        // If app is just opened, get newest 20 posts
+        // Else query for older posts
+        if (maxDate.equals(new Date(0))) {
+            adapter.clear();
+            postsQuery.getTop().withUser();
+        } else {
+            postsQuery.getNext(maxDate).getTop().withUser();
+        }
+
         postsQuery.findInBackground(new FindCallback<Post>() {
             @Override
             public void done(List<Post> posts, ParseException e) {
                 if (e == null) {
+
+                    // if opening app, clear out old items
+                    if(maxDate.equals(new Date(0))) {
+                        adapter.clear();
+                    }
+
                     mPosts.addAll(posts);
                     adapter.notifyDataSetChanged();
 
+                    // For logging purposes
                     for (int i = 0; i < posts.size(); i++) {
                         Log.d(TAG, "Post[" + i + "] = "
                                 + posts.get(i).getDescription()
@@ -104,5 +143,16 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+    }
+
+    // Get maximum Date.
+    protected Date getMaxDate() {
+        int size = mPosts.size();
+        if (size == 0) {
+            return new Date(0);
+        } else {
+            Post oldest = mPosts.get(mPosts.size() - 1);
+            return oldest.getCreatedAt();
+        }
     }
 }

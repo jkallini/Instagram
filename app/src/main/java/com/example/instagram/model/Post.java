@@ -6,12 +6,15 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.Date;
+
 @ParseClassName("Post")
 public class Post extends ParseObject {
 
     private static final String KEY_DESCRIPTION = "description"; // Key of description of Post
     private static final String KEY_IMAGE = "image";             // Key of image within Post
     private static final String KEY_USER = "user";               // Key of user who made Post
+    private static final String KEY_CREATED_AT = "createdAt";    // Key of post's creation time
 
     // Returns the description of this Post as a String.
     public String getDescription() {
@@ -51,11 +54,20 @@ public class Post extends ParseObject {
         // Limit the number of posts to only the top 20.
         public Query getTop() {
             setLimit(20);
+            // Allow reverse-chronological ordering
+            orderByDescending(KEY_CREATED_AT);
             return this;
         }
 
+        // Include the user.
         public Query withUser() {
             include("user");
+            return this;
+        }
+
+        // Get post that is older than the maxDate.
+        public Query getNext(Date maxDate) {
+            whereLessThan(KEY_CREATED_AT, maxDate);
             return this;
         }
     }
