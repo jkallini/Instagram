@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,6 +28,9 @@ public class HomeFragment extends Fragment {
     private PostAdapter adapter;
     private List<Post> mPosts;
 
+    // swipe container for swipe to refresh functionality
+    private SwipeRefreshLayout swipeContainer;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,8 +49,36 @@ public class HomeFragment extends Fragment {
         rvPosts.setAdapter(adapter);
         // Set the layout manager on the RecyclerView
         rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        setupSwipeRefreshing(view);
+
         loadTopPosts();
     }
+
+    // Handle logic for Swipe to Refresh.
+    private void setupSwipeRefreshing(@NonNull View view) {
+        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchHomeAsync(0);
+            }
+        });
+        // Configure the refreshing colors (Instagram colors!)
+        swipeContainer.setColorSchemeResources(android.R.color.holo_purple,
+                android.R.color.holo_blue_bright,
+                android.R.color.holo_red_light,
+                android.R.color.holo_orange_light);
+    }
+
+    // Refresh the home screen, and load top posts.
+    public void fetchHomeAsync(int page) {
+        adapter.clear();
+        loadTopPosts();
+        swipeContainer.setRefreshing(false);
+    }
+
 
     // Load the top 20 Instagram posts.
     private void loadTopPosts() {

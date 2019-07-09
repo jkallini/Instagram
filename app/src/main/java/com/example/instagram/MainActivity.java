@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment;
                 switch (item.getItemId()) {
                     case R.id.action_home:
-                        // Todo - swap fragment here
                         fragment = new HomeFragment();
                         break;
                     case R.id.action_compose:
