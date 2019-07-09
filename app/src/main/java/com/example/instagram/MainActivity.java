@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new ProfileFragment();
                         break;
                     default:
-                        // Todo - swap fragment here
                         fragment = new ComposeFragment();
                         break;
                 }

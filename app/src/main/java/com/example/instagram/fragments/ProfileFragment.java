@@ -16,7 +16,6 @@ public class ProfileFragment extends HomeFragment {
 
     @Override
     protected void loadTopPosts(final Date maxDate) {
-        super.loadTopPosts(maxDate);
 
         final Post.Query postsQuery = new Post.Query();
 
@@ -29,12 +28,14 @@ public class ProfileFragment extends HomeFragment {
         // Else query for older posts
         if (maxDate.equals(new Date(0))) {
             adapter.clear();
-            postsQuery.getTop().withUser();
+            postsQuery.getTop()
+                    .withUser()
+                    .whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
         } else {
             postsQuery.getNext(maxDate)
                     .getTop()
                     .withUser()
-                    .whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());;
+                    .whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
         }
 
         postsQuery.findInBackground(new FindCallback<Post>() {

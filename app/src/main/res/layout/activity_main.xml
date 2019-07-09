@@ -23,7 +23,9 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:itemIconTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:labelVisibilityMode="unlabeled"
         app:menu="@menu/menu_bottom_navigation" />
 
 </android.support.constraint.ConstraintLayout>
