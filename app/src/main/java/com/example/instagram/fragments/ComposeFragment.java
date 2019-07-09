@@ -72,13 +72,15 @@ public class ComposeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Check that the user has taken a photo
-                if (!pictureTaken) {
+                if (pictureTaken) {
+                    String description = etCaption.getText().toString();
+                    ParseUser user = ParseUser.getCurrentUser();
+                    savePost(description, user, photoFile);
+                }
+                else {
                     Log.e(APP_TAG, "No photo to submit.");
                     Toast.makeText(getContext(), "Take a photo first!", Toast.LENGTH_LONG).show();
                 }
-                String description = etCaption.getText().toString();
-                ParseUser user = ParseUser.getCurrentUser();
-                savePost(description, user, photoFile);
             }
         });
     }
