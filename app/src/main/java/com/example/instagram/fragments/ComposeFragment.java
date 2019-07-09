@@ -39,7 +39,7 @@ public class ComposeFragment extends Fragment {
     private Button btnShare;
 
     // Camera instance variables
-    public final String APP_TAG = "ComposeFragment";
+    public final String TAG = "ComposeFragment";
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public String photoFileName = "photo.jpg";
     File photoFile;
@@ -78,7 +78,7 @@ public class ComposeFragment extends Fragment {
                     savePost(description, user, photoFile);
                 }
                 else {
-                    Log.e(APP_TAG, "No photo to submit.");
+                    Log.e(TAG, "No photo to submit.");
                     Toast.makeText(getContext(), "Take a photo first!", Toast.LENGTH_LONG).show();
                 }
             }
@@ -96,11 +96,11 @@ public class ComposeFragment extends Fragment {
             @Override
             public void done(ParseException e) {
                 if (e == null) {
-                    Log.d(APP_TAG, "Post saved successfully!");
+                    Log.d(TAG, "Post saved successfully!");
                     //etCaption.setText("");
                     //ivPostImage.setImageResource(0);
                 } else {
-                    Log.e(APP_TAG, "Error while saving.");
+                    Log.e(TAG, "Error while saving.");
                     e.printStackTrace();
                 }
             }
@@ -132,11 +132,11 @@ public class ComposeFragment extends Fragment {
         // Get safe storage directory for photos
         // Use `getExternalFilesDir` on Context to access package-specific directories.
         // This way, we don't need to request external read/write runtime permissions.
-        File mediaStorageDir = new File(getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), APP_TAG);
+        File mediaStorageDir = new File(getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), TAG);
 
         // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()){
-            Log.d(APP_TAG, "failed to create directory");
+            Log.d(TAG, "failed to create directory");
         }
 
         // Return the file target for the photo based on filename

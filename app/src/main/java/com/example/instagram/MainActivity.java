@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.instagram.fragments.ComposeFragment;
+import com.example.instagram.fragments.HomeFragment;
 import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_home:
                         // Todo - swap fragment here
-                        fragment = new ComposeFragment();
+                        fragment = new HomeFragment();
                         break;
                     case R.id.action_compose:
                         fragment = new ComposeFragment();
