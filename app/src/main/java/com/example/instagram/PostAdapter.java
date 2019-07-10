@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.instagram.model.Post;
 import com.parse.ParseFile;
 
@@ -61,6 +62,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         private ImageView ivImage;
         private TextView tvDescription;
         private TextView tvTimestamp;
+        private ImageView ivProfileImage;
 
         // Fragment communicator
         FragmentCommunicator mCommunicator;
@@ -72,6 +74,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             ivImage = itemView.findViewById(R.id.ivImage);
             tvDescription = itemView.findViewById(R.id.tvDescription);
             tvTimestamp = itemView.findViewById(R.id.tvTimestamp);
+            ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
+
             mCommunicator = communicator;
 
             // Allow posts to be clickable
@@ -88,6 +92,21 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             ParseFile image = post.getImage();
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
+            }
+
+            // Get the profile image and load it
+            ParseFile profileImage = post.getUser().getParseFile(Post.KEY_PROFILE_IMAGE);
+            if (profileImage != null) {
+                Glide.with(context)
+                        .load(profileImage.getUrl())
+                        .apply(RequestOptions.circleCropTransform())
+                        .into(ivProfileImage);
+            }
+            else {
+                Glide.with(context)
+                        .load(R.drawable.default_avatar)
+                        .apply(RequestOptions.circleCropTransform())
+                        .into(ivProfileImage);
             }
 
             // Set description text

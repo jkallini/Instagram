@@ -16,10 +16,11 @@ import java.util.Locale;
 @ParseClassName("Post")
 public class Post extends ParseObject {
 
-    public static final String KEY_DESCRIPTION = "description"; // Key of description of Post
-    public static final String KEY_IMAGE = "image";             // Key of image within Post
-    public static final String KEY_USER = "user";               // Key of user who made Post
-    public static final String KEY_CREATED_AT = "createdAt";    // Key of post's creation time
+    public static final String KEY_DESCRIPTION = "description";    // Key of description of Post
+    public static final String KEY_IMAGE = "image";                // Key of image within Post
+    public static final String KEY_USER = "user";                  // Key of user who made Post
+    public static final String KEY_CREATED_AT = "createdAt";       // Key of post's creation time
+    public static final String KEY_PROFILE_IMAGE = "profileImage"; // Key of user's profile image
 
     // Returns the description of this Post as a String.
     public String getDescription() {

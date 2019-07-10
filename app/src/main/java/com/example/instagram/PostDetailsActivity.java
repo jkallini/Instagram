@@ -1,5 +1,6 @@
 package com.example.instagram;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -7,19 +8,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.instagram.model.Post;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseUser;
 
 public class PostDetailsActivity extends AppCompatActivity {
 
-    //private Post post;
-    //Context context;
+    Context context;
 
     private TextView tvUsername;
     private TextView tvDescription;
     private ImageView ivImage;
+    private ImageView ivProfileImage;
+    private TextView tvTimeStamp;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,6 +33,8 @@ public class PostDetailsActivity extends AppCompatActivity {
         tvUsername = findViewById(R.id.tvUsername);
         tvDescription = findViewById(R.id.tvDescription);
         ivImage = findViewById(R.id.ivImage);
+        ivProfileImage = findViewById(R.id.ivProfileImage);
+        tvTimeStamp = findViewById(R.id.tvTimeStamp);
 
         String postId = getIntent().getStringExtra(Post.class.getSimpleName());
 
@@ -44,11 +50,33 @@ public class PostDetailsActivity extends AppCompatActivity {
                     // Get the image and load it (if possible)
                     ParseFile image = post.getImage();
                     if (image != null) {
-                        Glide.with(getApplicationContext()).load(image.getUrl()).into(ivImage);
+                        Glide.with(getApplicationContext())
+                                .load(image.getUrl())
+                                .into(ivImage);
+                    }
+
+                    // Get the profile image and load it
+                    ParseUser user = post.getUser();
+                    ParseFile profileImage = user.getParseFile(Post.KEY_PROFILE_IMAGE);
+                    if (profileImage != null) {
+                        Glide.with(getApplicationContext())
+                                .load(profileImage.getUrl())
+                                .apply(RequestOptions.circleCropTransform())
+                                .into(ivProfileImage);
+                    }
+                    else {
+                        Glide.with(getApplicationContext())
+                                .load(R.drawable.default_avatar)
+                                .apply(RequestOptions.circleCropTransform())
+                                .into(ivProfileImage);
                     }
 
                     // Set description text
                     tvDescription.setText(post.getDescription());
+
+                    // Set relative timestamp
+                    tvTimeStamp.setText(post.getRelativeTimeAgo());
+
                 } else {
                     e.printStackTrace();
                 }
