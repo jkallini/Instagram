@@ -24,6 +24,7 @@ public class PostDetailsActivity extends AppCompatActivity {
     private ImageView ivImage;
     private ImageView ivProfileImage;
     private TextView tvTimeStamp;
+    private TextView tvTitle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         ivImage = findViewById(R.id.ivImage);
         ivProfileImage = findViewById(R.id.ivProfileImage);
         tvTimeStamp = findViewById(R.id.tvTimeStamp);
+        tvTitle = findViewById(R.id.tvTitle);
 
         String postId = getIntent().getStringExtra(Post.class.getSimpleName());
 
@@ -76,6 +78,9 @@ public class PostDetailsActivity extends AppCompatActivity {
 
                     // Set relative timestamp
                     tvTimeStamp.setText(post.getRelativeTimeAgo());
+
+                    // Set toolbar text
+                    tvTitle.setText(tvUsername.getText().toString() + "\'s post");
 
                 } else {
                     e.printStackTrace();
