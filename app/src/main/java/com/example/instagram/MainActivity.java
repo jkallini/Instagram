@@ -14,19 +14,21 @@ import android.view.MenuItem;
 
 import com.example.instagram.fragments.ComposeFragment;
 import com.example.instagram.fragments.HomeFragment;
+import com.example.instagram.fragments.PostDetailsFragment;
 import com.example.instagram.fragments.ProfileFragment;
 import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
+    FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
 
         // Setup toolbar and bottom navigation view
         Toolbar toolbar = findViewById(R.id.home_bar);
@@ -38,20 +40,20 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_home:
-                        setFragment(fragmentManager, new HomeFragment(),
-                                HomeFragment.TAG, ComposeFragment.TAG, ProfileFragment.TAG);
+                        setFragment(new HomeFragment(),
+                                new String[]{HomeFragment.TAG, ComposeFragment.TAG, ProfileFragment.TAG, PostDetailsFragment.TAG});
                         break;
                     case R.id.action_compose:
-                        setFragment(fragmentManager, new ComposeFragment(),
-                                ComposeFragment.TAG, HomeFragment.TAG, ProfileFragment.TAG);
+                        setFragment(new ComposeFragment(),
+                                new String[]{ComposeFragment.TAG, HomeFragment.TAG, ProfileFragment.TAG, PostDetailsFragment.TAG});
                         break;
                     case R.id.action_profile:
-                        setFragment(fragmentManager, new ProfileFragment(),
-                                ProfileFragment.TAG, HomeFragment.TAG, ComposeFragment.TAG);
+                        setFragment(new ProfileFragment(),
+                                new String[]{ProfileFragment.TAG, HomeFragment.TAG, ComposeFragment.TAG, PostDetailsFragment.TAG});
                         break;
                     default:
-                        setFragment(fragmentManager, new HomeFragment(),
-                                HomeFragment.TAG, ComposeFragment.TAG, ProfileFragment.TAG);
+                        setFragment(new HomeFragment(),
+                                new String[]{HomeFragment.TAG, ComposeFragment.TAG, ProfileFragment.TAG, PostDetailsFragment.TAG});
                         break;
                 }
                 return true;
@@ -61,21 +63,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Show/add the given fragment with tag 1, and hide any fragments with tags 2 or 3.
-    private void setFragment(FragmentManager fragmentManager, Fragment fragment, String tag1, String tag2, String tag3) {
-        if(fragmentManager.findFragmentByTag(tag1) != null) {
+    public void setFragment(Fragment fragment, String[] tags) {
+
+        if(fragmentManager.findFragmentByTag(tags[0]) != null) {
             //if the fragment exists, show it.
-            fragmentManager.beginTransaction().show(fragmentManager.findFragmentByTag(tag1)).commit();
+            fragmentManager.beginTransaction().show(fragmentManager.findFragmentByTag(tags[0])).commit();
         } else {
             //if the fragment does not exist, add it to fragment manager.
-            fragmentManager.beginTransaction().add(R.id.flContainer, fragment, tag1).commit();
+            fragmentManager.beginTransaction().add(R.id.flContainer, fragment, tags[0]).commit();
         }
-        if(fragmentManager.findFragmentByTag(tag2) != null){
-            //if the other fragment is visible, hide it.
-            fragmentManager.beginTransaction().hide(fragmentManager.findFragmentByTag(tag2)).commit();
-        }
-        if(fragmentManager.findFragmentByTag(tag3) != null){
-            //if the other fragment is visible, hide it.
-            fragmentManager.beginTransaction().hide(fragmentManager.findFragmentByTag(tag3)).commit();
+
+        for (int i = 1; i < tags.length; i++) {
+            if(fragmentManager.findFragmentByTag(tags[i]) != null){
+                //if the other fragment is visible, hide it.
+                fragmentManager.beginTransaction().hide(fragmentManager.findFragmentByTag(tags[i])).commit();
+            }
         }
     }
 

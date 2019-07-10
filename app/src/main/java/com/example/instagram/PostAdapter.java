@@ -1,7 +1,6 @@
 package com.example.instagram;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,18 +20,21 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
     private Context context;  // Context
     private List<Post> posts; // Data
+    private FragmentCommunicator mCommunicator;
 
     // Constructor
-    public PostAdapter(Context context, List<Post> posts) {
+    public PostAdapter(Context context, List<Post> posts, FragmentCommunicator communicator) {
         this.context = context;
         this.posts = posts;
+        this.mCommunicator = communicator;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false);
-        return new ViewHolder(view);
+        ViewHolder holder = new ViewHolder(view, mCommunicator);
+        return holder;
     }
 
     @Override
@@ -46,6 +48,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         return posts.size();
     }
 
+    // Interface to communicate data from HomeFragment to PostDetailsFragment.
+    public interface FragmentCommunicator {
+        void sendPostToDetails(Post post);
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         // Layout fields of item_post
@@ -54,13 +61,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         private TextView tvDescription;
         private TextView tvTimestamp;
 
-        public ViewHolder(@NonNull View itemView) {
+        // Fragment communicator
+        FragmentCommunicator mCommunicator;
+
+        public ViewHolder(@NonNull View itemView, FragmentCommunicator communicator) {
             super(itemView);
 
             tvUsername = itemView.findViewById(R.id.tvUsername);
             ivImage = itemView.findViewById(R.id.ivImage);
             tvDescription = itemView.findViewById(R.id.tvDescription);
             tvTimestamp = itemView.findViewById(R.id.tvTimestamp);
+            mCommunicator = communicator;
 
             // Allow posts to be clickable
             itemView.setOnClickListener(this);
@@ -94,11 +105,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
             // Check that the position exists and launch new fragment
             if (position != RecyclerView.NO_POSITION) {
-                // get the post and launch details activity
+                // get the post and send it through the communicator
                 Post post = posts.get(position);
-                Intent intent = new Intent(context, PostDetailsActivity.class);
-                intent.putExtra(Post.class.getSimpleName(), post.getObjectId());
-                context.startActivity(intent);
+                mCommunicator.sendPostToDetails(post);
             }
         }
     }
