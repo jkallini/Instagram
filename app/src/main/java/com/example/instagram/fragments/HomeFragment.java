@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.instagram.PostAdapter;
 import com.example.instagram.R;
@@ -30,11 +31,14 @@ public class HomeFragment extends Fragment {
     protected PostAdapter adapter;
     protected List<Post> mPosts;
 
-    // swipe container for swipe to refresh functionality
+    // Swipe container for swipe to refresh functionality
     private SwipeRefreshLayout swipeContainer;
 
     // Store a member variable for the listener
     private EndlessRecyclerViewScrollListener scrollListener;
+
+    // For indeterminate progress bar
+    protected ProgressBar pb;
 
     @Nullable
     @Override
@@ -45,6 +49,8 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         rvPosts = view.findViewById(R.id.rvPosts);
+
+        pb = (ProgressBar) view.findViewById(R.id.pbLoading);
 
         // Create the data source
         mPosts = new ArrayList<>();
@@ -107,6 +113,9 @@ public class HomeFragment extends Fragment {
     // Load the top 20 Instagram posts.
     protected void loadTopPosts(final Date maxDate) {
 
+        // Show progress bar
+        pb.setVisibility(ProgressBar.VISIBLE);
+
         final Post.Query postsQuery = new Post.Query();
         postsQuery.getTop().withUser();
 
@@ -138,6 +147,10 @@ public class HomeFragment extends Fragment {
                                 + posts.get(i).getDescription()
                                 + "\nusername = " + posts.get(i).getUser().getUsername());
                     }
+
+                    // Hide progress bar
+                    pb.setVisibility(ProgressBar.INVISIBLE);
+
                 } else {
                     e.printStackTrace();
                 }

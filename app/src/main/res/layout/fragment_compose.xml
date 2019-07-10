@@ -12,6 +12,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ProgressBar
+            android:id="@+id/pbLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:indeterminateDrawable="@drawable/progress"
+            android:visibility="invisible"
+            android:elevation="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivPostImage2"
+            app:layout_constraintEnd_toEndOf="@+id/ivPostImage2"
+            app:layout_constraintStart_toStartOf="@+id/ivPostImage2"
+            app:layout_constraintTop_toTopOf="@+id/ivPostImage2" />
+
         <ImageView
             android:id="@+id/ivPostImage"
             android:layout_width="380dp"

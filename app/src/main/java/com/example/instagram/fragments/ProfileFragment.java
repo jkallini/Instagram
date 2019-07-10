@@ -1,6 +1,7 @@
 package com.example.instagram.fragments;
 
 import android.util.Log;
+import android.widget.ProgressBar;
 
 import com.example.instagram.model.Post;
 import com.parse.FindCallback;
@@ -16,6 +17,9 @@ public class ProfileFragment extends HomeFragment {
 
     @Override
     protected void loadTopPosts(final Date maxDate) {
+
+        // Show progress bar
+        pb.setVisibility(ProgressBar.VISIBLE);
 
         final Post.Query postsQuery = new Post.Query();
 
@@ -57,6 +61,10 @@ public class ProfileFragment extends HomeFragment {
                                 + posts.get(i).getDescription()
                                 + "\nusername = " + posts.get(i).getUser().getUsername());
                     }
+
+                    // Hide progress bar
+                    pb.setVisibility(ProgressBar.INVISIBLE);
+
                 } else {
                     e.printStackTrace();
                 }

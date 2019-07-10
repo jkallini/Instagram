@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.instagram.R;
@@ -45,6 +46,9 @@ public class ComposeFragment extends Fragment {
     File photoFile;
     private boolean pictureTaken = false;
 
+    // For indeterminate progress bar
+    private ProgressBar pb;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,6 +58,8 @@ public class ComposeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        pb = (ProgressBar) view.findViewById(R.id.pbLoading);
 
         etCaption = view.findViewById(R.id.etCaption);
         ivPostImage = view.findViewById(R.id.ivPostImage);
@@ -87,6 +93,10 @@ public class ComposeFragment extends Fragment {
 
     // Save a Post with the given description and user.
     private void savePost(String description, ParseUser user, File photoFile) {
+
+        // Show progress bar
+        pb.setVisibility(ProgressBar.VISIBLE);
+
         Post post = new Post();
         post.setDescription(description);
         post.setUser(user);
@@ -97,8 +107,9 @@ public class ComposeFragment extends Fragment {
             public void done(ParseException e) {
                 if (e == null) {
                     Log.d(TAG, "Post saved successfully!");
-                    //etCaption.setText("");
-                    //ivPostImage.setImageResource(0);
+
+                    // Hide progress bar
+                    pb.setVisibility(ProgressBar.INVISIBLE);
                 } else {
                     Log.e(TAG, "Error while saving.");
                     e.printStackTrace();
