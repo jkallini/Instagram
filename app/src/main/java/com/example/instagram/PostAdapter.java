@@ -1,6 +1,7 @@
 package com.example.instagram;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -105,9 +106,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
             // Check that the position exists and launch new fragment
             if (position != RecyclerView.NO_POSITION) {
-                // get the post and send it through the communicator
+
                 Post post = posts.get(position);
-                mCommunicator.sendPostToDetails(post);
+
+                // CODE FOR USING DETAILS FRAGMENT
+                /* mCommunicator.sendPostToDetails(post); */
+
+                // CODE FOR USING DETAILS ACTIVITY
+                Intent intent = new Intent(context, PostDetailsActivity.class);
+                intent.putExtra(Post.class.getSimpleName(), post.getObjectId());
+                context.startActivity(intent);
             }
         }
     }
