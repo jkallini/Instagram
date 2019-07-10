@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ProfileFragment extends HomeFragment {
 
-    private final String TAG = "ProfileFragment";
+    public static final String TAG = "ProfileFragment";
 
     @Override
     protected void loadTopPosts(final Date maxDate) {

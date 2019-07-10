@@ -25,7 +25,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    private final String TAG = "HomeFragment";
+    public static final String TAG = "HomeFragment";
     private RecyclerView rvPosts;
     protected PostAdapter adapter;
     protected List<Post> mPosts;

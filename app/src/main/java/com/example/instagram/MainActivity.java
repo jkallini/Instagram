@@ -36,26 +36,47 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment fragment;
                 switch (item.getItemId()) {
                     case R.id.action_home:
-                        fragment = new HomeFragment();
+                        setFragment(fragmentManager, new HomeFragment(),
+                                HomeFragment.TAG, ComposeFragment.TAG, ProfileFragment.TAG);
                         break;
                     case R.id.action_compose:
-                        fragment = new ComposeFragment();
+                        setFragment(fragmentManager, new ComposeFragment(),
+                                ComposeFragment.TAG, HomeFragment.TAG, ProfileFragment.TAG);
                         break;
                     case R.id.action_profile:
-                        fragment = new ProfileFragment();
+                        setFragment(fragmentManager, new ProfileFragment(),
+                                ProfileFragment.TAG, HomeFragment.TAG, ComposeFragment.TAG);
                         break;
                     default:
-                        fragment = new ComposeFragment();
+                        setFragment(fragmentManager, new HomeFragment(),
+                                HomeFragment.TAG, ComposeFragment.TAG, ProfileFragment.TAG);
                         break;
                 }
-                fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
                 return true;
             }
         });
         bottomNavigationView.setSelectedItemId(R.id.action_home);
+    }
+
+    // Show/add the given fragment with tag 1, and hide any fragments with tags 2 or 3.
+    private void setFragment(FragmentManager fragmentManager, Fragment fragment, String tag1, String tag2, String tag3) {
+        if(fragmentManager.findFragmentByTag(tag1) != null) {
+            //if the fragment exists, show it.
+            fragmentManager.beginTransaction().show(fragmentManager.findFragmentByTag(tag1)).commit();
+        } else {
+            //if the fragment does not exist, add it to fragment manager.
+            fragmentManager.beginTransaction().add(R.id.flContainer, fragment, tag1).commit();
+        }
+        if(fragmentManager.findFragmentByTag(tag2) != null){
+            //if the other fragment is visible, hide it.
+            fragmentManager.beginTransaction().hide(fragmentManager.findFragmentByTag(tag2)).commit();
+        }
+        if(fragmentManager.findFragmentByTag(tag3) != null){
+            //if the other fragment is visible, hide it.
+            fragmentManager.beginTransaction().hide(fragmentManager.findFragmentByTag(tag3)).commit();
+        }
     }
 
     @Override

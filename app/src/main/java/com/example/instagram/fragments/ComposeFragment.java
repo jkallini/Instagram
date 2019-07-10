@@ -39,7 +39,7 @@ public class ComposeFragment extends Fragment {
     private Button btnShare;
 
     // Camera instance variables
-    public final String TAG = "ComposeFragment";
+    public static final String TAG = "ComposeFragment";
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public String photoFileName = "photo.jpg";
     File photoFile;
