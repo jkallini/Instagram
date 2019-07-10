@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -65,12 +66,20 @@ public class MainActivity extends AppCompatActivity {
     // Show/add the given fragment with tag 1, and hide any fragments with tags 2 or 3.
     public void setFragment(Fragment fragment, String[] tags) {
 
-        if(fragmentManager.findFragmentByTag(tags[0]) != null) {
-            //if the fragment exists, show it.
+        if(fragmentManager.findFragmentByTag(tags[0]) != null && tags[0] != PostDetailsFragment.TAG) {
+            // if the fragment exists, show it.
             fragmentManager.beginTransaction().show(fragmentManager.findFragmentByTag(tags[0])).commit();
         } else {
-            //if the fragment does not exist, add it to fragment manager.
-            fragmentManager.beginTransaction().add(R.id.flContainer, fragment, tags[0]).commit();
+            // if the fragment does not exist, add it to fragment manager.
+            // always add a new fragment if it is a PostDetailsFragment
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+            // Add sliding animation to PostDetailsFragment
+            if (tags[0] == PostDetailsFragment.TAG) {
+                transaction.setCustomAnimations(android.R.anim.slide_in_left,
+                        android.R.anim.slide_out_right);
+            }
+            transaction.add(R.id.flContainer, fragment, tags[0]).commit();
         }
 
         for (int i = 1; i < tags.length; i++) {
