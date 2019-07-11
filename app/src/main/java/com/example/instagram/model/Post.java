@@ -21,6 +21,7 @@ public class Post extends ParseObject {
     public static final String KEY_USER = "user";                  // Key of user who made Post
     public static final String KEY_CREATED_AT = "createdAt";       // Key of post's creation time
     public static final String KEY_PROFILE_IMAGE = "profileImage"; // Key of user's profile image
+    public static final String KEY_NAME = "name";                  // Key of user's name
 
     // Returns the description of this Post as a String.
     public String getDescription() {

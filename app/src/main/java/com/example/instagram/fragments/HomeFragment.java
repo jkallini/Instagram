@@ -29,15 +29,16 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     public static final String TAG = "HomeFragment";
-    private RecyclerView rvPosts;
-    protected PostAdapter adapter;
+    protected RecyclerView rvPosts;
+    private PostAdapter adapter;
     protected List<Post> mPosts;
+    protected LinearLayoutManager layoutManager;
 
     // Swipe container for swipe to refresh functionality
-    private SwipeRefreshLayout swipeContainer;
+    protected SwipeRefreshLayout swipeContainer;
 
     // Store a member variable for the listener
-    private EndlessRecyclerViewScrollListener scrollListener;
+    protected EndlessRecyclerViewScrollListener scrollListener;
 
     // For indeterminate progress bar
     protected ProgressBar pb;
@@ -79,7 +80,8 @@ public class HomeFragment extends Fragment {
         // Set the adapter on the RecyclerView
         rvPosts.setAdapter(adapter);
         // Set the layout manager on the RecyclerView
-        rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+        layoutManager = new LinearLayoutManager(getContext());
+        rvPosts.setLayoutManager(layoutManager);
 
         setupSwipeRefreshing(view);
 
@@ -93,11 +95,8 @@ public class HomeFragment extends Fragment {
     }
 
     // Code to setup endless scrolling
-    private void enableEndlessScrolling() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        rvPosts.setLayoutManager(linearLayoutManager);
-
-        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+    protected void enableEndlessScrolling() {
+        scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                 loadTopPosts(getMaxDate());
@@ -106,7 +105,7 @@ public class HomeFragment extends Fragment {
     }
 
     // Handle logic for Swipe to Refresh.
-    private void setupSwipeRefreshing(@NonNull View view) {
+    protected void setupSwipeRefreshing(@NonNull View view) {
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
         // Setup refresh listener which triggers new data loading
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -123,7 +122,7 @@ public class HomeFragment extends Fragment {
     }
 
     // Refresh the home screen, and load top posts.
-    public void fetchHomeAsync(int page) {
+    protected void fetchHomeAsync(int page) {
         adapter.clear();
         loadTopPosts(new Date(0));
         swipeContainer.setRefreshing(false);

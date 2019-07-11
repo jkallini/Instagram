@@ -4,7 +4,7 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/pink_5</item>
-        <item name="colorPrimaryDark">@color/pink_7</item>
+        <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/pink_3</item>
     </style>
 

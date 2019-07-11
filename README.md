@@ -32,7 +32,7 @@ The following **stretch** features are implemented:
 - [ ] User can comment on a post and see all comments for each post in the post details screen.
 - [ ] User can like a post and see number of likes for each post in the post details screen.
 - [ ] Create a custom Camera View on your phone.
-- [x] Run your app on your phone and use the camera to take the photo
+- [x] Run your app on your phone and use the camera to take the photo.
 
 The following **additional** features are implemented:
 
@@ -40,6 +40,7 @@ The following **additional** features are implemented:
 - [x] The logout button is located in a separate dropdown settings menu bar.
 - [x] The state of the home, compose, and settings fragments are saved, and are not refreshed upon opening a new tab in the BottomNavigationView.
 - [x] The user can open the camera roll to upload a profile picture.
+- [x] The photos on a user's profile are displayed in a grid layout.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
