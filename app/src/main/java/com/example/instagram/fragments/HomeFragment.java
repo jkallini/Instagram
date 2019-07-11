@@ -136,15 +136,14 @@ public class HomeFragment extends Fragment {
         pb.setVisibility(ProgressBar.VISIBLE);
 
         final Post.Query postsQuery = new Post.Query();
-        postsQuery.getTop().withUser();
 
         // If app is just opened, get newest 20 posts
         // Else query for older posts
         if (maxDate.equals(new Date(0))) {
             adapter.clear();
-            postsQuery.getTop().withUser();
+            postsQuery.getTop().withUser().withLikes();
         } else {
-            postsQuery.getNext(maxDate).getTop().withUser();
+            postsQuery.getNext(maxDate).getTop().withUser().withLikes();
         }
 
         postsQuery.findInBackground(new FindCallback<Post>() {

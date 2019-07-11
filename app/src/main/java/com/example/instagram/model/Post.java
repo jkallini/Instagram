@@ -22,10 +22,35 @@ public class Post extends ParseObject {
     public static final String KEY_CREATED_AT = "createdAt";       // Key of post's creation time
     public static final String KEY_PROFILE_IMAGE = "profileImage"; // Key of user's profile image
     public static final String KEY_NAME = "name";                  // Key of user's name
+    public static final String KEY_LIKES = "likes";
+
+    public boolean isLiked;
+    public int likeCount;
+
+    /*
+    public Post() {
+        try {
+            isLiked = this.getRelation(Post.KEY_LIKES)
+                    .getQuery()
+                    .whereEqualTo("objectId", ParseUser.getCurrentUser().getObjectId())
+                    .count() != 0;
+        } catch (com.parse.ParseException e) {
+            e.printStackTrace();
+            isLiked = false;
+        }
+        try {
+            likeCount = this.getRelation(Post.KEY_LIKES).getQuery().count();
+        } catch (com.parse.ParseException e) {
+            e.printStackTrace();
+            likeCount = 0;
+        }
+    } */
 
     // Returns the description of this Post as a String.
     public String getDescription() {
-        return getString(KEY_DESCRIPTION);
+        String description = getString(KEY_DESCRIPTION);
+        if (description.compareTo("") == 0) description = ". . .";
+        return description;
     }
 
     // Sets the description of this Post to the parameter String description.
@@ -75,6 +100,12 @@ public class Post extends ParseObject {
         // Get post that is older than the maxDate.
         public Query getNext(Date maxDate) {
             whereLessThan(KEY_CREATED_AT, maxDate);
+            return this;
+        }
+
+        // Include the users who liked the posts.
+        public Query withLikes() {
+            include(KEY_LIKES);
             return this;
         }
     }

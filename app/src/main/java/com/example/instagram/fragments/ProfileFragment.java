@@ -133,21 +133,19 @@ public class ProfileFragment extends HomeFragment {
         final Post.Query postsQuery = new Post.Query();
 
         // Only query posts by the current user
-        postsQuery.getTop()
-                .withUser()
-                .whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
-
         // If app is just opened, get newest 20 posts
         // Else query for older posts
         if (maxDate.equals(new Date(0))) {
             adapter.clear();
             postsQuery.getTop()
                     .withUser()
+                    .withLikes()
                     .whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
         } else {
             postsQuery.getNext(maxDate)
                     .getTop()
                     .withUser()
+                    .withLikes()
                     .whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
         }
 
