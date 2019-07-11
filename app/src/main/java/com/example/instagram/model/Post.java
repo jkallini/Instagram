@@ -22,7 +22,8 @@ public class Post extends ParseObject {
     public static final String KEY_CREATED_AT = "createdAt";       // Key of post's creation time
     public static final String KEY_PROFILE_IMAGE = "profileImage"; // Key of user's profile image
     public static final String KEY_NAME = "name";                  // Key of user's name
-    public static final String KEY_LIKES = "likes";
+    public static final String KEY_LIKES = "likes";                // Key of users who liked this post
+    public static final String KEY_LIKE_COUNT = "likeCount";       // Key of number of likes
 
     public boolean isLiked;
     public int likeCount;
@@ -78,6 +79,14 @@ public class Post extends ParseObject {
         put(KEY_USER, user);
     }
 
+    public Number getLikes() {
+        return getNumber(KEY_LIKE_COUNT);
+    }
+
+    public void setLikes(Number count) {
+        increment(KEY_LIKE_COUNT, count);
+    }
+
     public static class Query extends ParseQuery<Post> {
         public Query() {
             super(Post.class);
@@ -93,7 +102,7 @@ public class Post extends ParseObject {
 
         // Include the user.
         public Query withUser() {
-            include("user");
+            include(KEY_USER);
             return this;
         }
 
