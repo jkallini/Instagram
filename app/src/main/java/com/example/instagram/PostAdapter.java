@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.instagram.model.Post;
 import com.parse.ParseFile;
+import com.parse.ParseUser;
 
 import java.util.List;
 
@@ -35,7 +36,20 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false);
-        ViewHolder holder = new ViewHolder(view, mCommunicator);
+        final ViewHolder holder = new ViewHolder(view, mCommunicator);
+
+        // Allow users to be clickable
+        holder.tvUsername.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                ParseUser user = posts.get(position).getUser();
+                Intent intent = new Intent(context, ProfileDetailsActivity.class);
+                intent.putExtra("user_profile", user);
+                context.startActivity(intent);
+            }
+        });
+
         return holder;
     }
 
@@ -80,6 +94,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
             // Allow posts to be clickable
             itemView.setOnClickListener(this);
+
         }
 
         // Bind the view elements to the Post.
