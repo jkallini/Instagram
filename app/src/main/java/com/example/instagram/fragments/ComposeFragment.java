@@ -110,6 +110,12 @@ public class ComposeFragment extends Fragment {
 
                     // Hide progress bar
                     pb.setVisibility(ProgressBar.INVISIBLE);
+
+                    // Refresh to load new post in home
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.flContainer, new HomeFragment(), HomeFragment.TAG)
+                            .commit();
+
                 } else {
                     Log.e(TAG, "Error while saving.");
                     e.printStackTrace();

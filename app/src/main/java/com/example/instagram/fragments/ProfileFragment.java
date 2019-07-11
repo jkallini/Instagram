@@ -1,6 +1,10 @@
 package com.example.instagram.fragments;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -21,7 +25,10 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,9 +37,13 @@ public class ProfileFragment extends HomeFragment {
 
     public static final String TAG = "ProfileFragment";
 
+    // PICK_PHOTO_CODE is a constant integer
+    public final static int PICK_PHOTO_CODE = 1046;
+
     private TextView tvUsername;
     private ImageView ivProfileImage;
     private TextView tvName;
+    private TextView tvChangeProfPhoto;
     private ProfileAdapter adapter;
 
     @Nullable
@@ -76,6 +87,7 @@ public class ProfileFragment extends HomeFragment {
         tvUsername = view.findViewById(R.id.tvUsername);
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
         tvName = view.findViewById(R.id.tvName);
+        tvChangeProfPhoto = view.findViewById(R.id.tvChangeProfPhoto);
 
         ParseUser user = ParseUser.getCurrentUser();
         tvUsername.setText(user.getUsername());
@@ -96,6 +108,13 @@ public class ProfileFragment extends HomeFragment {
         tvName.setText(string);
 
         pb = (ProgressBar) view.findViewById(R.id.pbLoading);
+
+        tvChangeProfPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeProfilePic();
+            }
+        });
     }
 
     // Refresh the home screen, and load top posts.
@@ -160,5 +179,56 @@ public class ProfileFragment extends HomeFragment {
                 }
             }
         });
+    }
+
+    // Trigger gallery selection for a photo.
+    public void changeProfilePic() {
+        // Create intent for picking a photo from the gallery
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
+        // So as long as the result is not null, it's safe to use the intent.
+        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+            // Bring up gallery to select a photo
+            startActivityForResult(intent, PICK_PHOTO_CODE);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data != null) {
+            Uri photoUri = data.getData();
+            uploadProfileImage(photoUri);
+        }
+    }
+
+    // Upload the photo URI to Parse server.
+    private void uploadProfileImage(Uri photoUri) {
+        try {
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), photoUri);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            byte[] image = stream.toByteArray();
+            final ParseFile parseFile = new ParseFile("profpic.jpg", image);
+
+            parseFile.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    Log.d("MAIN", "SAVE IN BACKGROUND CALLED");
+                    ParseUser user = ParseUser.getCurrentUser();
+                    user.put(Post.KEY_PROFILE_IMAGE, parseFile);
+                    user.saveInBackground();
+
+                    // Refresh to load new profile images
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.flContainer, new ProfileFragment(), ProfileFragment.TAG)
+                            .commit();
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
