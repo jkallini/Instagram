@@ -1,9 +1,10 @@
 package com.example.instagram;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,8 +17,6 @@ import com.parse.ParseFile;
 import com.parse.ParseUser;
 
 public class PostDetailsActivity extends AppCompatActivity {
-
-    Context context;
 
     private TextView tvUsername;
     private TextView tvDescription;
@@ -39,6 +38,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.tvTitle);
 
         String postId = getIntent().getStringExtra(Post.class.getSimpleName());
+        final ParseUser user = getIntent().getParcelableExtra("post's user");
 
         Post.Query query = new Post.Query();
 
@@ -85,6 +85,24 @@ public class PostDetailsActivity extends AppCompatActivity {
                 } else {
                     e.printStackTrace();
                 }
+            }
+        });
+
+        // Allow users to be clickable
+        tvUsername.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PostDetailsActivity.this, ProfileDetailsActivity.class);
+                intent.putExtra("user_profile", user);
+                startActivity(intent);
+            }
+        });
+        ivProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PostDetailsActivity.this, ProfileDetailsActivity.class);
+                intent.putExtra("user_profile", user);
+                startActivity(intent);
             }
         });
     }

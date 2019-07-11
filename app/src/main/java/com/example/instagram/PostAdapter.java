@@ -49,6 +49,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
                 context.startActivity(intent);
             }
         });
+        holder.ivProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                ParseUser user = posts.get(position).getUser();
+                Intent intent = new Intent(context, ProfileDetailsActivity.class);
+                intent.putExtra("user_profile", user);
+                context.startActivity(intent);
+            }
+        });
 
         return holder;
     }
@@ -149,6 +159,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
                 // CODE FOR USING DETAILS ACTIVITY
                 Intent intent = new Intent(context, PostDetailsActivity.class);
                 intent.putExtra(Post.class.getSimpleName(), post.getObjectId());
+                intent.putExtra("post's user", post.getUser());
                 context.startActivity(intent);
             }
         }
