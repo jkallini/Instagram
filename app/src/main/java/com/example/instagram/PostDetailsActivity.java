@@ -109,12 +109,13 @@ public class PostDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Comment comment = new Comment();
-                comment.setCommentText(etCommentBox.toString());
+                comment.setCommentText(etCommentBox.getText().toString());
                 comment.setPostId(postId);
                 comment.setUser(ParseUser.getCurrentUser());
                 comment.saveInBackground();
                 etCommentBox.setText("");
                 adapter.clear();
+                populateDetails();
             }
         });
     }

@@ -67,6 +67,8 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
 
         // Set the handle text
         holder.tvUsername.setText(comment.getUser().getUsername());
+        holder.tvTimeStamp.setText(comment.getRelativeTimeAgo());
+        holder.tvCommentText.setText(comment.getCommentText());
 
         // Get the profile image and load it
         ParseFile profileImage = comment.getUser().getParseFile(Post.KEY_PROFILE_IMAGE);
