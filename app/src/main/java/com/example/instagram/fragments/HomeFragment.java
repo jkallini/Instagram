@@ -141,9 +141,9 @@ public class HomeFragment extends Fragment {
         // Else query for older posts
         if (maxDate.equals(new Date(0))) {
             adapter.clear();
-            postsQuery.getTop().withUser().withLikes();
+            postsQuery.getTop().withUser();
         } else {
-            postsQuery.getNext(maxDate).getTop().withUser().withLikes();
+            postsQuery.getNext(maxDate).getTop().withUser();
         }
 
         postsQuery.findInBackground(new FindCallback<Post>() {

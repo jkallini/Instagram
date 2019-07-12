@@ -139,13 +139,11 @@ public class ProfileFragment extends HomeFragment {
             adapter.clear();
             postsQuery.getTop()
                     .withUser()
-                    .withLikes()
                     .whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
         } else {
             postsQuery.getNext(maxDate)
                     .getTop()
                     .withUser()
-                    .withLikes()
                     .whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
         }
 

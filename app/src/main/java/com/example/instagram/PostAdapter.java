@@ -3,6 +3,7 @@ package com.example.instagram;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -60,6 +61,24 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             }
         });
 
+        holder.ivLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                Post post = posts.get(position);
+                boolean isLiked = post.isLiked();
+                if (!isLiked) {
+                    post.likePost(ParseUser.getCurrentUser());
+                } else {
+                    post.unlikePost(ParseUser.getCurrentUser());
+                }
+                post.saveInBackground();
+                setButton(holder.ivLike, !isLiked,
+                        R.drawable.ufi_heart, R.drawable.ufi_heart_active, R.color.red_5);
+                holder.tvLikeCount.setText(String.format("%d likes", post.getLikeCount()));
+            }
+        });
+
         return holder;
     }
 
@@ -87,6 +106,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         private TextView tvDescription;
         private TextView tvTimestamp;
         private ImageView ivProfileImage;
+        private ImageView ivLike;
+        private TextView tvLikeCount;
 
         // Fragment communicator
         FragmentCommunicator mCommunicator;
@@ -99,6 +120,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             tvDescription = itemView.findViewById(R.id.tvDescription);
             tvTimestamp = itemView.findViewById(R.id.tvTimestamp);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
+
+            ivLike = itemView.findViewById(R.id.ivLike);
+            tvLikeCount = itemView.findViewById(R.id.tvLikeCount);
 
             mCommunicator = communicator;
 
@@ -139,6 +163,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
             // Set timestamp text
             tvTimestamp.setText(post.getRelativeTimeAgo());
+
+            setButton(ivLike, post.isLiked(),
+                    R.drawable.ufi_heart, R.drawable.ufi_heart_active, R.color.red_5);
+            tvLikeCount.setText(String.format("%d likes", post.getLikeCount()));
         }
 
         @Override
@@ -175,5 +203,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
     public void addAll(List<Post> list) {
         posts.addAll(list);
         notifyDataSetChanged();
+    }
+
+    // sets the color of a button, depending on whether it is active
+    private void setButton(ImageView iv, boolean isActive, int strokeResId, int fillResId, int activeColor) {
+        iv.setImageResource(isActive ? fillResId : strokeResId);
+        iv.setColorFilter(ContextCompat.getColor(context, isActive ? activeColor : R.color.black));
     }
 }
