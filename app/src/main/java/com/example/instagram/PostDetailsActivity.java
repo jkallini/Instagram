@@ -94,7 +94,7 @@ public class PostDetailsActivity extends AppCompatActivity {
                 if (e == null) {
                     comments.addAll(objects);
                     adapter.notifyItemInserted(0);
-                    rvComments.scrollToPosition(0);
+                    //rvComments.scrollToPosition(0);
                 }
                 else {
                     Log.e(TAG, "Failed querying for comments");
