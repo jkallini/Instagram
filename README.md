@@ -30,7 +30,7 @@ The following **stretch** features are implemented:
   - [x] Display the profile photo with each post
   - [x] Tapping on a post's username or profile photo goes to that user's profile page
 - [ ] User can comment on a post and see all comments for each post in the post details screen.
-- [ ] User can like a post and see number of likes for each post in the post details screen.
+- [x] User can like a post and see number of likes for each post in the post details screen.
 - [ ] Create a custom Camera View on your phone.
 - [x] Run your app on your phone and use the camera to take the photo.
 

@@ -107,7 +107,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         private TextView tvUsername;
         private ImageView ivImage;
         private TextView tvDescription;
-        private TextView tvTimestamp;
+        private TextView tvTimeStamp;
         private ImageView ivProfileImage;
         private ImageView ivLike;
         private TextView tvLikeCount;
@@ -121,7 +121,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             tvUsername = itemView.findViewById(R.id.tvUsername);
             ivImage = itemView.findViewById(R.id.ivImage);
             tvDescription = itemView.findViewById(R.id.tvDescription);
-            tvTimestamp = itemView.findViewById(R.id.tvTimestamp);
+            tvTimeStamp = itemView.findViewById(R.id.tvTimeStamp);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
 
             ivLike = itemView.findViewById(R.id.ivLike);
@@ -165,7 +165,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             tvDescription.setText(post.getDescription());
 
             // Set timestamp text
-            tvTimestamp.setText(post.getRelativeTimeAgo());
+            tvTimeStamp.setText(post.getRelativeTimeAgo());
 
             setButton(ivLike, post.isLiked(),
                     R.drawable.ufi_heart, R.drawable.ufi_heart_active, R.color.red_5);

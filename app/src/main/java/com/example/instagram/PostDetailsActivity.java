@@ -5,20 +5,25 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.instagram.model.Comment;
 import com.example.instagram.model.Post;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
+import java.util.List;
+
 public class PostDetailsActivity extends AppCompatActivity {
 
+    // Fields for details
     private TextView tvUsername;
     private TextView tvDescription;
     private ImageView ivImage;
@@ -27,6 +32,11 @@ public class PostDetailsActivity extends AppCompatActivity {
     private TextView tvTitle;
     private TextView tvLikeCount;
     private ImageView ivLike;
+
+    // Fields for comments
+    private RecyclerView rvComments;
+    private CommentAdapter adapter;
+    private List<Comment> comments;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,6 +55,32 @@ public class PostDetailsActivity extends AppCompatActivity {
         String postId = getIntent().getStringExtra(Post.class.getSimpleName());
         final ParseUser user = getIntent().getParcelableExtra("post's user");
 
+        setPostDetails(postId);
+        setProfileListeners(user);
+
+    }
+
+    private void setProfileListeners(final ParseUser user) {
+        // Allow users to be clickable
+        tvUsername.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PostDetailsActivity.this, ProfileDetailsActivity.class);
+                intent.putExtra("user_profile", user);
+                startActivity(intent);
+            }
+        });
+        ivProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PostDetailsActivity.this, ProfileDetailsActivity.class);
+                intent.putExtra("user_profile", user);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void setPostDetails(String postId) {
         Post.Query query = new Post.Query();
 
         query.withUser().getInBackground(postId, new GetCallback<Post>() {
@@ -114,24 +150,6 @@ public class PostDetailsActivity extends AppCompatActivity {
                         else tvLikeCount.setText(String.format("%d likes", post.getLikeCount()));
                     }
                 });
-            }
-        });
-
-        // Allow users to be clickable
-        tvUsername.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PostDetailsActivity.this, ProfileDetailsActivity.class);
-                intent.putExtra("user_profile", user);
-                startActivity(intent);
-            }
-        });
-        ivProfileImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PostDetailsActivity.this, ProfileDetailsActivity.class);
-                intent.putExtra("user_profile", user);
-                startActivity(intent);
             }
         });
     }
