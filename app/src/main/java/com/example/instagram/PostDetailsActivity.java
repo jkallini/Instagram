@@ -129,9 +129,7 @@ public class PostDetailsActivity extends AppCompatActivity {
 
                 setButton(ivLike, post.isLiked(),
                         R.drawable.ufi_heart, R.drawable.ufi_heart_active, R.color.red_5);
-                int likeCount = post.getLikeCount();
-                if (likeCount == 1) tvLikeCount.setText(String.format("%d like", post.getLikeCount()));
-                else tvLikeCount.setText(String.format("%d likes", post.getLikeCount()));
+                setLikeText(post, tvLikeCount);
 
                 ivLike.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -145,13 +143,18 @@ public class PostDetailsActivity extends AppCompatActivity {
                         post.saveInBackground();
                         setButton(ivLike, !isLiked,
                                 R.drawable.ufi_heart, R.drawable.ufi_heart_active, R.color.red_5);
-                        int likeCount = post.getLikeCount();
-                        if (likeCount == 1) tvLikeCount.setText(String.format("%d like", post.getLikeCount()));
-                        else tvLikeCount.setText(String.format("%d likes", post.getLikeCount()));
+                        setLikeText(post, tvLikeCount);
                     }
                 });
             }
         });
+    }
+
+
+    private void setLikeText(Post post, TextView view) {
+        int likeCount = post.getLikeCount();
+        if (likeCount == 1) view.setText(String.format("%d like", post.getLikeCount()));
+        else view.setText(String.format("%d likes", post.getLikeCount()));
     }
 
     // sets the color of a button, depending on whether it is active
