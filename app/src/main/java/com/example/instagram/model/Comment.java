@@ -2,6 +2,7 @@ package com.example.instagram.model;
 
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.text.ParseException;
@@ -99,5 +100,30 @@ public class Comment extends ParseObject {
         }
 
         return "";
+    }
+
+    public static class Query extends ParseQuery<Comment> {
+        public Query() {
+            super(Comment.class);
+        }
+
+        // Limit the number of posts to only the top 20.
+        public Comment.Query getOrdered() {
+            // Allow reverse-chronological ordering
+            orderByDescending(KEY_CREATED_AT);
+            return this;
+        }
+
+        // Include the user.
+        public Comment.Query withUser() {
+            include(KEY_USER);
+            return this;
+        }
+
+        // Get comments on Post with postId.
+        public Comment.Query forPost(String postId) {
+            whereEqualTo(KEY_POST_ID, postId);
+            return this;
+        }
     }
 }

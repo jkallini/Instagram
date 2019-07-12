@@ -7,9 +7,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -31,19 +29,19 @@
             app:srcCompat="@drawable/ufi_heart" />
 
         <ImageView
-            android:id="@+id/ivComment"
+            android:id="@+id/ivCommentSend"
             android:layout_width="30dp"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/ivLike"
-            app:layout_constraintTop_toBottomOf="@+id/ivImage"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/etCommentBox"
+            app:layout_constraintTop_toTopOf="@+id/etCommentBox"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ufi_comment" />
 
@@ -59,7 +57,7 @@
             app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/ivComment"
+            app:layout_constraintStart_toEndOf="@+id/ivLike"
             app:layout_constraintTop_toBottomOf="@+id/ivImage"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/direct" />
@@ -129,6 +127,7 @@
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivProfileImage"
             app:layout_constraintVertical_bias="0.0"
@@ -168,12 +167,29 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvComments"
             android:layout_width="395dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etCommentBox" />
+
+        <EditText
+            android:id="@+id/etCommentBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Add a comment..."
+            android:inputType="textPersonName"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivCommentSend"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTimeStamp" />
     </android.support.constraint.ConstraintLayout>
