@@ -61,6 +61,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             }
         });
 
+        // Enable like button
         holder.ivLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +76,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
                 post.saveInBackground();
                 setButton(holder.ivLike, !isLiked,
                         R.drawable.ufi_heart, R.drawable.ufi_heart_active, R.color.red_5);
-                holder.tvLikeCount.setText(String.format("%d likes", post.getLikeCount()));
+                int likeCount = post.getLikeCount();
+                if (likeCount == 1) holder.tvLikeCount.setText(String.format("%d like", post.getLikeCount()));
+                else holder.tvLikeCount.setText(String.format("%d likes", post.getLikeCount()));
             }
         });
 
@@ -166,7 +169,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
             setButton(ivLike, post.isLiked(),
                     R.drawable.ufi_heart, R.drawable.ufi_heart_active, R.color.red_5);
-            tvLikeCount.setText(String.format("%d likes", post.getLikeCount()));
+            int likeCount = post.getLikeCount();
+            if (likeCount == 1) tvLikeCount.setText(String.format("%d like", post.getLikeCount()));
+            else tvLikeCount.setText(String.format("%d likes", post.getLikeCount()));
         }
 
         @Override
