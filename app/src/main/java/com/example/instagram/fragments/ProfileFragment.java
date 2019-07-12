@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.instagram.MainActivity;
 import com.example.instagram.ProfileAdapter;
 import com.example.instagram.R;
 import com.example.instagram.model.Post;
@@ -44,6 +45,7 @@ public class ProfileFragment extends HomeFragment {
     private ImageView ivProfileImage;
     private TextView tvName;
     private TextView tvChangeProfPhoto;
+    private TextView tvLogout;
     private ProfileAdapter adapter;
 
     @Nullable
@@ -88,6 +90,7 @@ public class ProfileFragment extends HomeFragment {
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
         tvName = view.findViewById(R.id.tvName);
         tvChangeProfPhoto = view.findViewById(R.id.tvChangeProfPhoto);
+        tvLogout = view.findViewById(R.id.tvLogout);
 
         ParseUser user = ParseUser.getCurrentUser();
         tvUsername.setText(user.getUsername());
@@ -115,6 +118,14 @@ public class ProfileFragment extends HomeFragment {
                 changeProfilePic();
             }
         });
+
+        tvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).logout();
+            }
+        });
+
     }
 
     // Refresh the home screen, and load top posts.

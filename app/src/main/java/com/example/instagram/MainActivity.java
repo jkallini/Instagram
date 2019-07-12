@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Logout the current user.
-    private void logout() {
+    public void logout() {
         ParseUser.logOut();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
