@@ -29,7 +29,7 @@ The following **stretch** features are implemented:
   - [x] Allow the logged in user to add a profile photo
   - [x] Display the profile photo with each post
   - [x] Tapping on a post's username or profile photo goes to that user's profile page
-- [ ] User can comment on a post and see all comments for each post in the post details screen.
+- [x] User can comment on a post and see all comments for each post in the post details screen.
 - [x] User can like a post and see number of likes for each post in the post details screen.
 - [ ] Create a custom Camera View on your phone.
 - [x] Run your app on your phone and use the camera to take the photo.
@@ -41,11 +41,12 @@ The following **additional** features are implemented:
 - [x] The state of the home, compose, and settings fragments are saved, and are not refreshed upon opening a new tab in the BottomNavigationView.
 - [x] The user can open the camera roll to upload a profile picture.
 - [x] The photos on a user's profile are displayed in a grid layout.
+- [x] Comments within a post's details view have a relative timestamp.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. I would like to discuss other possible implementations of liking and commenting, using different models of ParseObjects.
+2. I would also like to discuss more about how to efficiently carry out parse queries, if our databases were larger.
 
 ## Video Walkthrough
 

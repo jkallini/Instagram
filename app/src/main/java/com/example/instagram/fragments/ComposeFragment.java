@@ -16,10 +16,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.instagram.R;
@@ -37,7 +37,7 @@ public class ComposeFragment extends Fragment {
     private EditText etCaption;
     private ImageView ivPostImage;
     private ImageView ivCaptureImage;
-    private Button btnShare;
+    private TextView tvShare;
 
     // Camera instance variables
     public static final String TAG = "ComposeFragment";
@@ -64,7 +64,7 @@ public class ComposeFragment extends Fragment {
         etCaption = view.findViewById(R.id.etCaption);
         ivPostImage = view.findViewById(R.id.ivPostImage);
         ivCaptureImage = view.findViewById(R.id.ivCaptureImage);
-        btnShare = view.findViewById(R.id.btnShare);
+        tvShare = view.findViewById(R.id.tvShare);
 
         // Launch the camera if the Capture image is clicked
         ivCaptureImage.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +74,7 @@ public class ComposeFragment extends Fragment {
             }
         });
 
-        btnShare.setOnClickListener(new View.OnClickListener() {
+        tvShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Check that the user has taken a photo

@@ -8,9 +8,19 @@
         android:title="Home"
         app:showAsAction="always" />
     <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/selector_search"
+        android:title="Home"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/action_compose"
         android:icon="@drawable/selector_compose"
         android:title="Compose"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_heart"
+        android:icon="@drawable/selector_heart"
+        android:title="Profile"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_profile"
