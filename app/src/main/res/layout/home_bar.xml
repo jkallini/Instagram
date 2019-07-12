@@ -4,12 +4,34 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:theme="@style/CustomToolbarStyle"
-    app:popupTheme="@style/CustomPopupStyle">
+    android:contentInsetLeft="0dp"
+    android:contentInsetStart="0dp"
+    app:contentInsetLeft="0dp"
+    app:contentInsetStart="0dp"
+    android:contentInsetRight="0dp"
+    android:contentInsetEnd="0dp"
+    app:contentInsetRight="0dp"
+    app:contentInsetEnd="0dp">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:src="@drawable/nav_logo_whiteout" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="left"
+        android:src="@drawable/camera_shadow_fill"
+        android:tint="@color/black" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="2dp"
+        android:src="@drawable/ufi_new_direct"
+        android:tint="@color/black" />
 
 </android.support.v7.widget.Toolbar>
