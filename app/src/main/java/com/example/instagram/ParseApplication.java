@@ -7,7 +7,7 @@ import com.example.instagram.model.Post;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
-public class ParseApp extends Application {
+public class ParseApplication extends Application {
 
     @Override
     public void onCreate() {

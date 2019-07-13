@@ -13,9 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.example.instagram.MainActivity;
-import com.example.instagram.PostAdapter;
-import com.example.instagram.PostAdapter.FragmentCommunicator;
+import com.example.instagram.adapter.PostAdapter;
 import com.example.instagram.R;
 import com.example.instagram.model.EndlessRecyclerViewScrollListener;
 import com.example.instagram.model.Post;
@@ -43,24 +41,6 @@ public class HomeFragment extends Fragment {
     // For indeterminate progress bar
     protected ProgressBar pb;
 
-    // Fragment communicator to send posts to PostDetailsFragment
-    final FragmentCommunicator communicator = new FragmentCommunicator() {
-
-        @Override
-        public void sendPostToDetails(Post post) {
-
-            // Make a new fragment and send Post in a bundle
-            PostDetailsFragment fragment = new PostDetailsFragment();
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("new_post", post);
-            fragment.setArguments(bundle);
-
-            ((MainActivity) getActivity()).setFragment(fragment,
-                    new String[]{PostDetailsFragment.TAG, HomeFragment.TAG, ComposeFragment.TAG, ProfileFragment.TAG});
-
-        }
-    };
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -76,7 +56,7 @@ public class HomeFragment extends Fragment {
         // Create the data source
         mPosts = new ArrayList<>();
         // Create the adapter
-        adapter = new PostAdapter(getContext(), mPosts, communicator);
+        adapter = new PostAdapter(getContext(), mPosts);
         // Set the adapter on the RecyclerView
         rvPosts.setAdapter(adapter);
         // Set the layout manager on the RecyclerView

@@ -9,12 +9,12 @@ Time spent: **25** hours spent in total
 The following **required** functionality is completed:
 
 - [x] User sees app icon in home screen.
-- [x] User can sign up to create a new account using Parse authentication
-- [x] User can log in and log out of his or her account
-- [x] The current signed in user is persisted across app restarts
-- [x] User can take a photo, add a caption, and post it to "Instagram"
-- [x] User can view the last 20 posts submitted to "Instagram"
-- [x] User can pull to refresh the last 20 posts submitted to "Instagram"
+- [x] User can sign up to create a new account using Parse authentication.
+- [x] User can log in and log out of his or her account.
+- [x] The current signed in user is persisted across app restarts.
+- [x] User can take a photo, add a caption, and post it to "Instagram."
+- [x] User can view the last 20 posts submitted to "Instagram."
+- [x] User can pull to refresh the last 20 posts submitted to "Instagram."
 - [x] User can tap a post to view post details, including timestamp and caption.
 
 The following **stretch** features are implemented:
@@ -23,12 +23,12 @@ The following **stretch** features are implemented:
 - [x] Style the feed to look like the real Instagram feed.
 - [x] User should switch between different tabs - viewing all posts (feed view), capture (camera and photo gallery view) and profile tabs (posts made) using a Bottom Navigation View.
 - [x] User can load more posts once he or she reaches the bottom of the feed using infinite scrolling.
-- [x] Show the username and creation time for each post
-- [x] After the user submits a new post, show an indeterminate progress bar while the post is being uploaded to Parse
+- [x] Show the username and creation time for each post.
+- [x] After the user submits a new post, show an indeterminate progress bar while the post is being uploaded to Parse.
 - User Profiles:
-  - [x] Allow the logged in user to add a profile photo
-  - [x] Display the profile photo with each post
-  - [x] Tapping on a post's username or profile photo goes to that user's profile page
+  - [x] Allow the logged in user to add a profile photo.
+  - [x] Display the profile photo with each post.
+  - [x] Tapping on a post's username or profile photo goes to that user's profile page.
 - [x] User can comment on a post and see all comments for each post in the post details screen.
 - [x] User can like a post and see number of likes for each post in the post details screen.
 - [ ] Create a custom Camera View on your phone.
@@ -42,6 +42,7 @@ The following **additional** features are implemented:
 - [x] The user can open the camera roll to upload a profile picture.
 - [x] The photos on a user's profile are displayed in a grid layout.
 - [x] Comments within a post's details view have a relative timestamp.
+- [x] Tapping on a comment's username or profile photo goes to that user's profile page.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 

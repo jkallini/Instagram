@@ -1,4 +1,4 @@
-package com.example.instagram;
+package com.example.instagram.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.example.instagram.R;
 import com.example.instagram.fragments.ComposeFragment;
 import com.example.instagram.fragments.HomeFragment;
-import com.example.instagram.fragments.PostDetailsFragment;
 import com.example.instagram.fragments.ProfileFragment;
 import com.parse.ParseUser;
 
@@ -40,19 +40,19 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_home:
                         setFragment(new HomeFragment(),
-                                new String[]{HomeFragment.TAG, ComposeFragment.TAG, ProfileFragment.TAG, PostDetailsFragment.TAG});
+                                new String[]{HomeFragment.TAG, ComposeFragment.TAG, ProfileFragment.TAG});
                         break;
                     case R.id.action_compose:
                         setFragment(new ComposeFragment(),
-                                new String[]{ComposeFragment.TAG, HomeFragment.TAG, ProfileFragment.TAG, PostDetailsFragment.TAG});
+                                new String[]{ComposeFragment.TAG, HomeFragment.TAG, ProfileFragment.TAG});
                         break;
                     case R.id.action_profile:
                         setFragment(new ProfileFragment(),
-                                new String[]{ProfileFragment.TAG, HomeFragment.TAG, ComposeFragment.TAG, PostDetailsFragment.TAG});
+                                new String[]{ProfileFragment.TAG, HomeFragment.TAG, ComposeFragment.TAG});
                         break;
                     default:
                         setFragment(new HomeFragment(),
-                                new String[]{HomeFragment.TAG, ComposeFragment.TAG, ProfileFragment.TAG, PostDetailsFragment.TAG});
+                                new String[]{HomeFragment.TAG, ComposeFragment.TAG, ProfileFragment.TAG});
                         break;
                 }
                 return true;
@@ -64,19 +64,13 @@ public class MainActivity extends AppCompatActivity {
     // Show/add the given fragment with tag stored in tags[0], and hide fragments with all other tags.
     public void setFragment(Fragment fragment, String[] tags) {
 
-        if(fragmentManager.findFragmentByTag(tags[0]) != null && tags[0] != PostDetailsFragment.TAG) {
+        if(fragmentManager.findFragmentByTag(tags[0]) != null) {
             // if the fragment exists, show it.
             fragmentManager.beginTransaction().show(fragmentManager.findFragmentByTag(tags[0])).commit();
         } else {
             // if the fragment does not exist, add it to fragment manager.
             // always add a new fragment if it is a PostDetailsFragment
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-            // Add sliding animation to PostDetailsFragment
-            if (tags[0] == PostDetailsFragment.TAG) {
-                transaction.setCustomAnimations(android.R.anim.slide_in_left,
-                        android.R.anim.slide_out_right);
-            }
             transaction.add(R.id.flContainer, fragment, tags[0]).commit();
         }
 

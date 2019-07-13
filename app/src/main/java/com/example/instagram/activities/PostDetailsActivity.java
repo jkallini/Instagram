@@ -1,4 +1,4 @@
-package com.example.instagram;
+package com.example.instagram.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.instagram.adapter.CommentAdapter;
+import com.example.instagram.R;
 import com.example.instagram.model.Comment;
 import com.example.instagram.model.Post;
 import com.parse.FindCallback;
@@ -79,7 +81,6 @@ public class PostDetailsActivity extends AppCompatActivity {
 
         setPostDetails(postId);
         setProfileListeners(user);
-
         setCommentSendListener();
         populateDetails();
     }
@@ -122,22 +123,16 @@ public class PostDetailsActivity extends AppCompatActivity {
 
     private void setProfileListeners(final ParseUser user) {
         // Allow users to be clickable
-        tvUsername.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PostDetailsActivity.this, ProfileDetailsActivity.class);
                 intent.putExtra("user_profile", user);
                 startActivity(intent);
             }
-        });
-        ivProfileImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PostDetailsActivity.this, ProfileDetailsActivity.class);
-                intent.putExtra("user_profile", user);
-                startActivity(intent);
-            }
-        });
+        };
+        tvUsername.setOnClickListener(listener);
+        ivProfileImage.setOnClickListener(listener);
     }
 
     private void setPostDetails(String postId) {

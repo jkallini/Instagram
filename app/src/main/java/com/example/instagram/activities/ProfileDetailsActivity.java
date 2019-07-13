@@ -1,4 +1,4 @@
-package com.example.instagram;
+package com.example.instagram.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.instagram.adapter.ProfileAdapter;
+import com.example.instagram.R;
 import com.example.instagram.model.EndlessRecyclerViewScrollListener;
 import com.example.instagram.model.Post;
 import com.parse.FindCallback;

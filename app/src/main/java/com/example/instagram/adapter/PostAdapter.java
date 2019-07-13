@@ -1,4 +1,4 @@
-package com.example.instagram;
+package com.example.instagram.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.instagram.R;
+import com.example.instagram.activities.PostDetailsActivity;
+import com.example.instagram.activities.ProfileDetailsActivity;
 import com.example.instagram.model.Post;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
@@ -24,23 +27,21 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
     private Context context;  // Context
     private List<Post> posts; // Data
-    private FragmentCommunicator mCommunicator;
 
     // Constructor
-    public PostAdapter(Context context, List<Post> posts, FragmentCommunicator communicator) {
+    public PostAdapter(Context context, List<Post> posts) {
         this.context = context;
         this.posts = posts;
-        this.mCommunicator = communicator;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false);
-        final ViewHolder holder = new ViewHolder(view, mCommunicator);
+        final ViewHolder holder = new ViewHolder(view);
 
         // Allow users to be clickable
-        holder.tvUsername.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
@@ -49,17 +50,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
                 intent.putExtra("user_profile", user);
                 context.startActivity(intent);
             }
-        });
-        holder.ivProfileImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int position = holder.getAdapterPosition();
-                ParseUser user = posts.get(position).getUser();
-                Intent intent = new Intent(context, ProfileDetailsActivity.class);
-                intent.putExtra("user_profile", user);
-                context.startActivity(intent);
-            }
-        });
+        };
+        holder.tvUsername.setOnClickListener(listener);
+        holder.ivProfileImage.setOnClickListener(listener);
 
         // Enable like button
         holder.ivLike.setOnClickListener(new View.OnClickListener() {
@@ -94,11 +87,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         return posts.size();
     }
 
-    // Interface to communicate data from HomeFragment to PostDetailsFragment.
-    public interface FragmentCommunicator {
-        void sendPostToDetails(Post post);
-    }
-
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         // Layout fields of item_post
@@ -110,10 +98,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         private ImageView ivLike;
         private TextView tvLikeCount;
 
-        // Fragment communicator
-        FragmentCommunicator mCommunicator;
-
-        public ViewHolder(@NonNull View itemView, FragmentCommunicator communicator) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvUsername = itemView.findViewById(R.id.tvUsername);
@@ -124,8 +109,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
             ivLike = itemView.findViewById(R.id.ivLike);
             tvLikeCount = itemView.findViewById(R.id.tvLikeCount);
-
-            mCommunicator = communicator;
 
             // Allow posts to be clickable
             itemView.setOnClickListener(this);
@@ -181,9 +164,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             if (position != RecyclerView.NO_POSITION) {
 
                 Post post = posts.get(position);
-
-                // CODE FOR USING DETAILS FRAGMENT
-                /* mCommunicator.sendPostToDetails(post); */
 
                 // CODE FOR USING DETAILS ACTIVITY
                 Intent intent = new Intent(context, PostDetailsActivity.class);

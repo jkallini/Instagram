@@ -1,4 +1,4 @@
-package com.example.instagram;
+package com.example.instagram.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.instagram.R;
+import com.example.instagram.activities.ProfileDetailsActivity;
 import com.example.instagram.model.Comment;
 import com.example.instagram.model.Post;
 import com.parse.ParseFile;
@@ -21,8 +23,8 @@ import java.util.List;
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHolder> {
 
-    private Context context;        // Context
-    private List<Comment> comments; // Data
+    private Context context;
+    private List<Comment> comments;
 
     // Constructor
     public CommentAdapter(Context context, List<Comment> comments) {
@@ -77,8 +79,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
                     .load(profileImage.getUrl())
                     .apply(RequestOptions.circleCropTransform())
                     .into(holder.ivProfileImage);
-        }
-        else {
+        } else {
             Glide.with(context)
                     .load(R.drawable.default_avatar)
                     .apply(RequestOptions.circleCropTransform())
