@@ -59,14 +59,12 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Credits
 
-List an 3rd party libraries, icons, graphics, or other assets you used in your app.
-
 - [Android Async Http Client](http://loopj.com/android-async-http/) - networking library
 
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Implementing likes and comments was the most challenging part of the assignment - it really required a lot of thought regarding what kind of ParseObjects to use to implement them.
 
 ## License
 
