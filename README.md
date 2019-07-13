@@ -37,7 +37,6 @@ The following **stretch** features are implemented:
 The following **additional** features are implemented:
 
 - [x] The sign up screen has password confirmation functionality.
-- [x] The logout button is located in a separate dropdown settings menu bar.
 - [x] The state of the home, compose, and settings fragments are saved, and are not refreshed upon opening a new tab in the BottomNavigationView.
 - [x] The user can open the camera roll to upload a profile picture.
 - [x] The photos on a user's profile are displayed in a grid layout.
