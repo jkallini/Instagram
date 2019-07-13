@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.instagram.R;
 import com.parse.LogInCallback;
@@ -92,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d("LoginActivity", "Login successful!");
                     launchHomeActivity();
                 } else {
+                    Toast.makeText(LoginActivity.this, "Invalid username or password.", Toast.LENGTH_LONG).show();
                     Log.e("LoginActivity", "Login failed.");
                     e.printStackTrace();
                 }
